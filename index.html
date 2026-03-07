@@ -1676,7 +1676,8 @@
         });
     }
 
-    // Shift+D+W key combo to toggle admin mode
+    // Shift+D+W key combo to toggle admin mode (synced via Firebase for all users)
+    var adminRef = useFirebase ? firebase.database().ref('adminMode') : null;
     var keyBuffer = [];
     document.addEventListener('keydown', function(e) {
         if (e.target.tagName === 'INPUT' || e.target.tagName === 'TEXTAREA') return;
@@ -1686,13 +1687,28 @@
             keyBuffer.push(key);
             if (keyBuffer.length > 2) keyBuffer = keyBuffer.slice(-2);
             if (keyBuffer.length === 2 && keyBuffer[0] === 'd' && keyBuffer[1] === 'w') {
-                document.body.classList.toggle('admin-mode');
+                if (useFirebase) {
+                    adminRef.once('value', function(snap) {
+                        adminRef.set(!snap.val());
+                    });
+                } else {
+                    document.body.classList.toggle('admin-mode');
+                }
                 keyBuffer = [];
             }
         } else {
             keyBuffer = [];
         }
     });
+    if (useFirebase) {
+        adminRef.on('value', function(snap) {
+            if (snap.val()) {
+                document.body.classList.add('admin-mode');
+            } else {
+                document.body.classList.remove('admin-mode');
+            }
+        });
+    }
 
     // Initialize
     document.addEventListener('DOMContentLoaded', function() {
