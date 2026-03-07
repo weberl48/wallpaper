@@ -2,3 +2,4 @@ __pycache__/
 *.pyc
 .env
 generate-previews.py
+*-firebase-adminsdk-*.json
