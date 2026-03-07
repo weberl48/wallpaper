@@ -262,7 +262,7 @@
         .remove-btn:hover { background: #e74c3c; }
         .admin-mode .remove-btn { display: block; }
         .card { position: relative; }
-        .card.removed { display: none; }
+        .card.removed { display: none !important; }
         .restore-all-btn { display: none; position: fixed; bottom: 20px; right: 20px; background: #2d7a4f; color: #fff; border: none; padding: 12px 20px; border-radius: 8px; font-size: 1rem; cursor: pointer; z-index: 1000; box-shadow: 0 4px 12px rgba(0,0,0,0.4); }
         .restore-all-btn:hover { background: #3a9963; }
         .admin-mode .restore-all-btn { display: block; }
@@ -1689,6 +1689,7 @@
             btn.addEventListener('click', function(e) {
                 e.stopPropagation();
                 if (confirm('Remove "' + getCardTitle(card) + '"?')) {
+                    card.classList.add('removed');
                     removeCard(name);
                 }
             });

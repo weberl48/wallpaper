@@ -105,7 +105,7 @@
         .remove-btn { display: none; position: absolute; top: 8px; right: 8px; background: rgba(200,30,30,0.85); color: #fff; border: none; border-radius: 50%; width: 28px; height: 28px; font-size: 1.1rem; line-height: 1; cursor: pointer; z-index: 10; }
         .remove-btn:hover { background: #e74c3c; }
         .admin-mode .remove-btn { display: block; }
-        .card.removed { display: none; }
+        .card.removed { display: none !important; }
         .restore-all-btn { display: none; position: fixed; bottom: 20px; right: 20px; background: #444; color: #fff; border: none; padding: 12px 20px; border-radius: 8px; font-size: 1rem; cursor: pointer; z-index: 1000; box-shadow: 0 4px 12px rgba(0,0,0,0.4); }
         .restore-all-btn:hover { background: #666; }
         .admin-mode .restore-all-btn { display: block; }
@@ -610,7 +610,7 @@
         document.querySelectorAll('.card').forEach(function(card) {
             var name = getCardName(card); if (!name) return;
             var btn = document.createElement('button'); btn.className = 'remove-btn'; btn.title = 'Remove'; btn.innerHTML = '&times;';
-            btn.addEventListener('click', function(e) { e.stopPropagation(); if (confirm('Remove this wallpaper?')) { if (useFirebase) removedRef.child(name).set(true); card.classList.add('removed'); } });
+            btn.addEventListener('click', function(e) { e.stopPropagation(); if (confirm('Remove this wallpaper?')) { card.classList.add('removed'); if (useFirebase) removedRef.child(name).set(true); } });
             card.appendChild(btn);
         });
     }
