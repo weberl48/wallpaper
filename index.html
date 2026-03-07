@@ -1461,13 +1461,13 @@
                 var cardImg = img.parentElement;
                 var card = cardImg.parentElement;
 
-                // Create room preview img
+                // Create room preview img (shown by default)
                 var roomImg = document.createElement('img');
                 roomImg.src = previewSrc;
                 roomImg.alt = 'Room preview';
-                roomImg.className = 'hidden';
                 roomImg.onclick = function() { openLightbox(this); };
                 cardImg.appendChild(roomImg);
+                img.classList.add('hidden');
 
                 // Create toggle buttons in card-body
                 var cardBody = card.querySelector('.card-body');
@@ -1476,7 +1476,6 @@
 
                 var btnPattern = document.createElement('button');
                 btnPattern.textContent = 'Pattern';
-                btnPattern.className = 'active';
                 btnPattern.onclick = function() {
                     img.classList.remove('hidden');
                     roomImg.classList.add('hidden');
@@ -1486,6 +1485,7 @@
 
                 var btnRoom = document.createElement('button');
                 btnRoom.textContent = 'Room Preview';
+                btnRoom.className = 'active';
                 btnRoom.onclick = function() {
                     img.classList.add('hidden');
                     roomImg.classList.remove('hidden');
