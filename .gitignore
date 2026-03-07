@@ -2,4 +2,6 @@ __pycache__/
 *.pyc
 .env
 generate-previews.py
+generate-room-variant.py
+generate-variant-previews.py
 *-firebase-adminsdk-*.json
