@@ -279,6 +279,28 @@
         }
 
         /* Voting */
+        /* Remove button (hidden by default) */
+        .remove-btn {
+            display: none;
+            position: absolute;
+            top: 8px;
+            right: 8px;
+            background: rgba(200,30,30,0.85);
+            color: #fff;
+            border: none;
+            border-radius: 50%;
+            width: 28px;
+            height: 28px;
+            font-size: 1.1rem;
+            line-height: 1;
+            cursor: pointer;
+            z-index: 10;
+        }
+        .remove-btn:hover { background: #e74c3c; }
+        .admin-mode .remove-btn { display: block; }
+        .card { position: relative; }
+        .card.removed { display: none; }
+
         .vote-btn {
             display: inline-flex;
             align-items: center;
@@ -1722,9 +1744,69 @@
         });
     }
 
+    // --- Remove / Admin mode ---
+    var removedRef = useFirebase ? db.ref('removed') : null;
+
+    function addRemoveButtons() {
+        document.querySelectorAll('.card').forEach(function(card) {
+            var name = getCardName(card);
+            if (!name) return;
+            var btn = document.createElement('button');
+            btn.className = 'remove-btn';
+            btn.title = 'Remove this wallpaper';
+            btn.innerHTML = '&times;';
+            btn.addEventListener('click', function(e) {
+                e.stopPropagation();
+                if (confirm('Remove "' + getCardTitle(card) + '"?')) {
+                    removeCard(name);
+                }
+            });
+            card.appendChild(btn);
+        });
+    }
+
+    function removeCard(name) {
+        if (useFirebase) {
+            removedRef.child(name).set(true);
+        } else {
+            var removed = JSON.parse(localStorage.getItem('wallpaper-removed') || '{}');
+            removed[name] = true;
+            localStorage.setItem('wallpaper-removed', JSON.stringify(removed));
+            applyRemoved(removed);
+        }
+    }
+
+    function applyRemoved(removedMap) {
+        document.querySelectorAll('.card').forEach(function(card) {
+            var name = getCardName(card);
+            if (name && removedMap[name]) {
+                card.classList.add('removed');
+            }
+        });
+    }
+
+    // Shift+D+W key combo to toggle admin mode
+    var keyBuffer = [];
+    document.addEventListener('keydown', function(e) {
+        if (e.target.tagName === 'INPUT' || e.target.tagName === 'TEXTAREA') return;
+        if (!e.shiftKey) { keyBuffer = []; return; }
+        var key = e.key.toLowerCase();
+        if (key === 'd' || key === 'w') {
+            keyBuffer.push(key);
+            if (keyBuffer.length > 2) keyBuffer = keyBuffer.slice(-2);
+            if (keyBuffer.length === 2 && keyBuffer[0] === 'd' && keyBuffer[1] === 'w') {
+                document.body.classList.toggle('admin-mode');
+                keyBuffer = [];
+            }
+        } else {
+            keyBuffer = [];
+        }
+    });
+
     // Initialize
     document.addEventListener('DOMContentLoaded', function() {
         initVoteButtons();
+        addRemoveButtons();
 
         if (useFirebase) {
             // Listen for real-time vote updates
@@ -1740,6 +1822,12 @@
                 }
                 renderLeaderboard(items);
             });
+
+            // Listen for removed cards
+            removedRef.on('value', function(snapshot) {
+                var data = snapshot.val() || {};
+                applyRemoved(data);
+            });
         } else {
             // Load local counts
             localCounts = JSON.parse(localStorage.getItem('wallpaper-vote-counts') || '{}');
@@ -1751,6 +1839,10 @@
                 }
             });
             updateLeaderboard();
+
+            // Load local removed
+            var removed = JSON.parse(localStorage.getItem('wallpaper-removed') || '{}');
+            applyRemoved(removed);
         }
     });
 })();
