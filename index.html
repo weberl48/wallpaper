@@ -1,0 +1,1761 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Basement Wallpaper Options</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+        .card[id] { scroll-margin-top: 20px; }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #1a1a1a;
+            color: #e0ddd5;
+            line-height: 1.6;
+        }
+
+        header {
+            background: linear-gradient(135deg, #2d4a3e, #1a2f25);
+            border-bottom: 3px solid #8b6914;
+            padding: 40px 20px;
+            text-align: center;
+        }
+
+        header h1 {
+            font-size: 2.4rem;
+            color: #e0ddd5;
+            letter-spacing: 2px;
+            margin-bottom: 10px;
+        }
+
+        header p {
+            color: #a89f91;
+            font-size: 1.1rem;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        .room-context {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            margin-top: 20px;
+            flex-wrap: wrap;
+        }
+
+        .room-context .tag {
+            background: rgba(0,0,0,0.3);
+            border: 1px solid #5a7a6a;
+            border-radius: 20px;
+            padding: 6px 18px;
+            font-size: 0.85rem;
+            color: #b8cfc2;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .style-section {
+            margin: 40px 0;
+        }
+
+        .style-header {
+            display: flex;
+            align-items: baseline;
+            gap: 15px;
+            margin-bottom: 8px;
+            border-bottom: 2px solid #3d5a4a;
+            padding-bottom: 10px;
+            flex-wrap: wrap;
+        }
+
+        .style-header h2 {
+            font-size: 1.8rem;
+            color: #c9a84c;
+        }
+
+        .style-header .style-desc {
+            color: #a89f91;
+            font-size: 0.95rem;
+        }
+
+        .cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+            gap: 24px;
+            margin-top: 20px;
+        }
+
+        .card {
+            background: #252525;
+            border-radius: 12px;
+            overflow: hidden;
+            border: 1px solid #3a3a3a;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 8px 30px rgba(0,0,0,0.5);
+            border-color: #5a7a6a;
+        }
+
+        .card-img {
+            width: 100%;
+            height: 260px;
+            overflow: hidden;
+            background-color: #333;
+        }
+
+        .card-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.3s;
+        }
+
+        .card-img img.hidden { display: none; }
+
+        .card:hover .card-img img {
+            transform: scale(1.05);
+        }
+
+        .img-toggle {
+            display: flex;
+            gap: 0;
+            margin-bottom: 8px;
+        }
+
+        .img-toggle button {
+            flex: 1;
+            padding: 5px 8px;
+            font-size: 0.75rem;
+            border: 1px solid #4e7a60;
+            background: transparent;
+            color: #a89f91;
+            cursor: pointer;
+            transition: background 0.2s, color 0.2s;
+        }
+
+        .img-toggle button:first-child { border-radius: 4px 0 0 4px; }
+        .img-toggle button:last-child { border-radius: 0 4px 4px 0; }
+
+        .img-toggle button.active {
+            background: #4e7a60;
+            color: #e0ddd5;
+        }
+
+        .card-body {
+            padding: 20px;
+        }
+
+        .card-body h3 {
+            font-size: 1.15rem;
+            color: #e0ddd5;
+            margin-bottom: 6px;
+        }
+
+        .card-body .source {
+            font-size: 0.85rem;
+            color: #8b6914;
+            margin-bottom: 10px;
+            font-weight: 600;
+        }
+
+        .card-body .price {
+            display: inline-block;
+            background: #2d4a3e;
+            color: #b8cfc2;
+            padding: 2px 10px;
+            border-radius: 10px;
+            font-size: 0.8rem;
+            margin-bottom: 10px;
+        }
+
+        .card-body .desc {
+            font-size: 0.9rem;
+            color: #a89f91;
+            margin-bottom: 14px;
+        }
+
+        .card-body a.btn {
+            display: inline-block;
+            background: #3d5a4a;
+            color: #e0ddd5;
+            text-decoration: none;
+            padding: 8px 20px;
+            border-radius: 6px;
+            font-size: 0.9rem;
+            transition: background 0.2s;
+        }
+
+        .card-body a.btn:hover {
+            background: #4e7a60;
+        }
+
+        .recommendations {
+            background: linear-gradient(135deg, #2d4a3e, #1f3329);
+            border: 1px solid #4e7a60;
+            border-radius: 12px;
+            padding: 30px 35px;
+            margin: 50px 0 30px;
+        }
+
+        .recommendations h2 {
+            color: #c9a84c;
+            font-size: 1.6rem;
+            margin-bottom: 18px;
+        }
+
+        .rec-list {
+            list-style: none;
+        }
+
+        .rec-list li {
+            padding: 10px 0;
+            border-bottom: 1px solid rgba(255,255,255,0.08);
+            display: flex;
+            gap: 12px;
+        }
+
+        .rec-list li:last-child { border-bottom: none; }
+
+        .rec-label {
+            color: #c9a84c;
+            font-weight: 600;
+            min-width: 180px;
+        }
+
+        .rec-text {
+            color: #b8cfc2;
+        }
+
+        footer {
+            text-align: center;
+            padding: 30px;
+            color: #555;
+            font-size: 0.85rem;
+            border-top: 1px solid #2a2a2a;
+            margin-top: 40px;
+        }
+
+        /* Lightbox */
+        .lightbox-overlay {
+            display: none;
+            position: fixed;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: rgba(0,0,0,0.9);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+        }
+
+        .lightbox-overlay.active {
+            display: flex;
+        }
+
+        .lightbox-overlay img {
+            max-width: 90vw;
+            max-height: 90vh;
+            object-fit: contain;
+            border-radius: 8px;
+            box-shadow: 0 0 60px rgba(0,0,0,0.8);
+        }
+
+        .lightbox-close {
+            position: fixed;
+            top: 20px;
+            right: 30px;
+            color: #fff;
+            font-size: 2rem;
+            cursor: pointer;
+            z-index: 1001;
+        }
+
+        /* Voting */
+        .vote-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            background: transparent;
+            border: 1px solid #3a3a3a;
+            color: #a89f91;
+            padding: 5px 12px;
+            border-radius: 20px;
+            cursor: pointer;
+            font-size: 0.85rem;
+            transition: all 0.2s;
+            margin-top: 8px;
+        }
+        .vote-btn:hover { border-color: #c9a84c; color: #c9a84c; }
+        .vote-btn.voted { border-color: #c9a84c; color: #c9a84c; background: rgba(201,168,76,0.1); }
+        .vote-btn .heart { font-size: 1rem; }
+        .vote-btn.voted .heart { color: #e74c3c; }
+        .vote-count { font-weight: 600; }
+
+        /* Leaderboard */
+        .leaderboard {
+            background: linear-gradient(135deg, #2a2015, #1a1a1a);
+            border: 1px solid #c9a84c;
+            border-radius: 12px;
+            padding: 24px 30px;
+            margin-bottom: 30px;
+        }
+        .leaderboard h2 { color: #c9a84c; font-size: 1.3rem; margin-bottom: 16px; }
+        .leaderboard-list { list-style: none; }
+        .leaderboard-item {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 8px 0;
+            border-bottom: 1px solid rgba(255,255,255,0.05);
+            cursor: pointer;
+        }
+        .leaderboard-item:hover { background: rgba(255,255,255,0.03); }
+        .leaderboard-rank {
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: #c9a84c;
+            min-width: 28px;
+            text-align: center;
+        }
+        .leaderboard-name { color: #e0ddd5; font-size: 0.95rem; flex: 1; }
+        .leaderboard-votes {
+            background: rgba(201,168,76,0.15);
+            color: #c9a84c;
+            padding: 2px 10px;
+            border-radius: 10px;
+            font-size: 0.85rem;
+            font-weight: 600;
+        }
+
+        @media (max-width: 768px) {
+            header h1 { font-size: 1.6rem; }
+            .cards { grid-template-columns: 1fr; }
+            .rec-list li { flex-direction: column; gap: 4px; }
+            .rec-label { min-width: auto; }
+        }
+    </style>
+</head>
+<body>
+
+<!-- Lightbox -->
+<div class="lightbox-overlay" id="lightbox" onclick="closeLightbox()">
+    <span class="lightbox-close">&times;</span>
+    <img id="lightbox-img" src="" alt="Wallpaper preview">
+</div>
+
+<header>
+    <h1>Basement Wallpaper Options</h1>
+    <p>Curated wallpaper selections to complement your basement room design</p>
+    <div class="room-context">
+        <span class="tag">Dark Green Board &amp; Batten</span>
+        <span class="tag">Walnut Floors</span>
+        <span class="tag">Blacked-Out Ceiling</span>
+        <span class="tag">Bronze Sconces</span>
+        <span class="tag">Antique Statement Pieces</span>
+    </div>
+</header>
+
+<div class="container">
+
+    <!-- VOTING LEADERBOARD -->
+    <div class="leaderboard" id="leaderboard" style="display: none;">
+        <h2>Most Popular Picks</h2>
+        <ol class="leaderboard-list" id="leaderboard-list"></ol>
+    </div>
+
+    <!-- MOODY DARK FLORALS -->
+    <section class="style-section">
+        <div class="style-header">
+            <h2>Moody Dark Florals</h2>
+            <span class="style-desc">Rich, dramatic flowers on dark backgrounds &mdash; the most popular pairing with dark green wainscoting.</span>
+        </div>
+        <div class="cards">
+            <div class="card" id="card-moody-floral-black">
+                <div class="card-img">
+                    <img src="images/moody-floral-black.jpg" alt="Moody Floral Black by Tempaper" onclick="openLightbox(this)">
+                </div>
+                <div class="card-body">
+                    <h3>Moody Floral Black</h3>
+                    <div class="source">Tempaper</div>
+                    <span class="price">~$125/roll</span>
+                    <p class="desc">Larger-than-life peonies and roses in full bloom against a striking black backdrop. Peel &amp; stick removable format.</p>
+                    <a class="btn" href="https://tempaper.com/products/moody-floral-black-floral-removable-wallpaper" target="_blank">View Wallpaper</a>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-img">
+                    <img src="images/gothic-black-gold.jpg" alt="Gothic Black & Gold Floral by RollsRolla" onclick="openLightbox(this)">
+                </div>
+                <div class="card-body">
+                    <h3>Gothic Black &amp; Gold Floral</h3>
+                    <div class="source">RollsRolla (Amazon)</div>
+                    <span class="price">~$15-30</span>
+                    <p class="desc">Striking gothic floral with black and gold tones. Thick canvas peel &amp; stick. Gold warms beautifully against walnut floors.</p>
+                    <a class="btn" href="https://www.amazon.com/RollsRolla-Gothic-Black-Adhesive-Wallpaper/dp/B0CTZVQB5M" target="_blank">View Wallpaper</a>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-img">
+                    <img src="images/lush-overgrown.jpg" alt="Dark Moody Floral - Lush Overgrown" onclick="openLightbox(this)">
+                </div>
+                <div class="card-body">
+                    <h3>Dark Moody Floral &mdash; Lush Overgrown</h3>
+                    <div class="source">Etsy</div>
+                    <span class="price">Varies</span>
+                    <p class="desc">Lush overgrown pattern with plants, flowers, and snake on a dramatic black background. Custom sizes available.</p>
+                    <a class="btn" href="https://www.etsy.com/listing/1753568895/dark-moody-floral-wallpaper-lush" target="_blank">View Wallpaper</a>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-img">
+                    <img src="images/gothic-self-adhesive.jpg" alt="Gothic Black & Gold Self Adhesive" onclick="openLightbox(this)">
+                </div>
+                <div class="card-body">
+                    <h3>Black &amp; Gold Gothic Self-Adhesive</h3>
+                    <div class="source">Etsy / RollsRolla</div>
+                    <span class="price">Varies</span>
+                    <p class="desc">Self-adhesive gothic floral in black, gold, and gray. Removable and renter-friendly.</p>
+                    <a class="btn" href="https://www.etsy.com/listing/1588242097/gothic-wallpaper-black-and-gold-self" target="_blank">View Wallpaper</a>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-img">
+                    <img src="images/moody-florals-collection.jpg" alt="Moody Florals Collection" onclick="openLightbox(this)">
+                </div>
+                <div class="card-body">
+                    <h3>Moody Florals Collection</h3>
+                    <div class="source">Love vs. Design</div>
+                    <span class="price">Varies</span>
+                    <p class="desc">Multiple moody floral peel &amp; stick options in various dark colorways and scales.</p>
+                    <a class="btn" href="https://www.lovevsdesign.com/moody-florals-wallpaper.html" target="_blank">View Collection</a>
+                </div>
+            </div>
+
+            <!-- LIGHTER OPTIONS -->
+            <div class="card" style="border-color: #5a5a4a;">
+                <div class="card-img">
+                    <img src="images/light-floral-cream.jpg" alt="Cream Floral Botanical" onclick="openLightbox(this)">
+                </div>
+                <div class="card-body">
+                    <span class="price" style="background: #4a4530; color: #d4c9a0;">Lighter Option</span>
+                    <h3>Cream Floral Botanical</h3>
+                    <div class="source">Wayfair</div>
+                    <span class="price">Varies</span>
+                    <p class="desc">Wildflowers, berries, and flowing leaves in neutral cream tones. Creates bold contrast above dark green B&amp;B &mdash; Studio McGee's "moody &amp; bright" approach.</p>
+                    <a class="btn" href="https://www.wayfair.com/decor-pillows/sb2/cream-floral-botanical-wallpaper-c1861000-a85974~302495-a85976~302515.html" target="_blank">View Collection</a>
+                </div>
+            </div>
+
+            <div class="card" style="border-color: #5a5a4a;">
+                <div class="card-img">
+                    <img src="images/light-floral-perigold.jpg" alt="Cream Botanical on Sisal" onclick="openLightbox(this)">
+                </div>
+                <div class="card-body">
+                    <span class="price" style="background: #4a4530; color: #d4c9a0;">Lighter Option</span>
+                    <h3>Cream Botanical on Sisal Ground</h3>
+                    <div class="source">Perigold</div>
+                    <span class="price">Premium</span>
+                    <p class="desc">Elegant airy botanicals printed on sisal ground for subtle texture and dimension. Creamy blooms with leafy green vines &mdash; ties to the green below while lightening the upper wall.</p>
+                    <a class="btn" href="https://www.perigold.com/decor/sb1/cream-floral-botanical-wallpaper-c1870720-a85974~302495.html" target="_blank">View Collection</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- BOTANICAL / TROPICAL JUNGLE -->
+    <section class="style-section">
+        <div class="style-header">
+            <h2>Botanical / Tropical Jungle</h2>
+            <span class="style-desc">Lush greenery on dark backgrounds &mdash; ties the green board &amp; batten into a cohesive nature theme.</span>
+        </div>
+        <div class="cards">
+            <div class="card">
+                <div class="card-img">
+                    <img src="images/tropical-gold.jpg" alt="Dark & Moody Tropical Leaves (Gold)" onclick="openLightbox(this)">
+                </div>
+                <div class="card-body">
+                    <h3>Dark &amp; Moody Tropical Leaves (Gold)</h3>
+                    <div class="source">Think Noir</div>
+                    <span class="price">~$60+</span>
+                    <p class="desc">Gold-accented tropical leaves on a dark background. Available as self-adhesive or traditional paste.</p>
+                    <a class="btn" href="https://thinknoirwallpaper.com/products/dark-gold-moody-tropical-leaves-wallpaper" target="_blank">View Wallpaper</a>
+                </div>
+            </div>
+
+            <div class="card" id="card-tropical-dark">
+                <div class="card-img">
+                    <img src="images/tropical-dark.jpg" alt="Dark Moody Tropical Leaves" onclick="openLightbox(this)">
+                </div>
+                <div class="card-body">
+                    <h3>Dark Moody Tropical Leaves</h3>
+                    <div class="source">Think Noir</div>
+                    <span class="price">~$60+</span>
+                    <p class="desc">Deep green tropical leaves on black. Pairs beautifully with dark green board &amp; batten below.</p>
+                    <a class="btn" href="https://thinknoirwallpaper.com/products/dark-moody-tropical-leaves-wallpaper" target="_blank">View Wallpaper</a>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-img">
+                    <img src="images/tropical-green-gold.jpg" alt="Black Floral Green Gold Leaf" onclick="openLightbox(this)">
+                </div>
+                <div class="card-body">
+                    <h3>Black Floral &amp; Green Gold Leaf</h3>
+                    <div class="source">Amazon</div>
+                    <span class="price">~$10-15</span>
+                    <p class="desc">Budget-friendly dark green and gold tropical fern peel &amp; stick. Waterproof and self-adhesive.</p>
+                    <a class="btn" href="https://www.amazon.com/Wallpaper-Waterproof-Self-Adhesive-Tropical-Countertop/dp/B0DBLCJH2B" target="_blank">View Wallpaper</a>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-img">
+                    <img src="images/tropical-jungle.jpg" alt="Tropical Leaves Dark Jungle" onclick="openLightbox(this)">
+                </div>
+                <div class="card-body">
+                    <h3>Tropical Leaves in Dark Jungle</h3>
+                    <div class="source">Miramar Paint Center</div>
+                    <span class="price">Varies</span>
+                    <p class="desc">Dense tropical leaves against a dark jungle background. Rich, immersive feel.</p>
+                    <a class="btn" href="https://miramarpaintcenter.com/products/tropical-leaves-in-a-dark-jungle-background-wallpaper-6536" target="_blank">View Wallpaper</a>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-img">
+                    <img src="images/midnight-palm.jpg" alt="Midnight Tropical Palm" onclick="openLightbox(this)">
+                </div>
+                <div class="card-body">
+                    <h3>Midnight Tropical Palm</h3>
+                    <div class="source">Amazon (iPaste)</div>
+                    <span class="price">~$12-20</span>
+                    <p class="desc">Dark blue/black background with palm and monstera leaves. Budget-friendly peel &amp; stick.</p>
+                    <a class="btn" href="https://www.amazon.com/iPaste-Wallpaper-Adhesive-Cabinets-Drawers/dp/B0DWX86GVT" target="_blank">View Wallpaper</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CHINOISERIE -->
+    <section class="style-section">
+        <div class="style-header">
+            <h2>Chinoiserie</h2>
+            <span class="style-desc">Elegant birds, branches, and blossoms &mdash; sophisticated and classic above wainscoting.</span>
+        </div>
+        <div class="cards">
+            <div class="card" id="card-chinoiserie-york">
+                <div class="card-img">
+                    <img src="images/chinoiserie-york.jpg" alt="Bird & Blossom Chinoiserie Black" onclick="openLightbox(this)">
+                </div>
+                <div class="card-body">
+                    <h3>Bird &amp; Blossom Chinoiserie &mdash; Black</h3>
+                    <div class="source">York Wallcoverings</div>
+                    <span class="price">~$80-120/roll</span>
+                    <p class="desc">Asian botanical with birds and metallic finish. Premium quality from a leading wallcovering brand.</p>
+                    <a class="btn" href="https://www.yorkwallcoverings.com/rrd-d81-bird-and-blossom-chinoserie-wallpaper-black" target="_blank">View Wallpaper</a>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-img">
+                    <img src="images/chinoiserie-birds-green.jpg" alt="Chinoiserie Birds & Flowers Dark Green" onclick="openLightbox(this)">
+                </div>
+                <div class="card-body">
+                    <h3>Chinoiserie Birds &amp; Flowers &mdash; Dark Green</h3>
+                    <div class="source">Happywall</div>
+                    <span class="price">Varies</span>
+                    <p class="desc">Colorful birds in trees on dark green background. Non-woven, PVC-free, eco-friendly inks.</p>
+                    <a class="btn" href="https://www.happywall.com/chinoiserie-birds-flowers-tree-dark-green-wallpaper" target="_blank">View Wallpaper</a>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-img">
+                    <img src="images/chinoiserie-dark-green.jpg" alt="Chinoiserie Dark Green" onclick="openLightbox(this)">
+                </div>
+                <div class="card-body">
+                    <h3>Chinoiserie &mdash; Dark Green</h3>
+                    <div class="source">Good and Craft</div>
+                    <span class="price">Varies</span>
+                    <p class="desc">Colorful birds perching in trees with tropical flowers against a dark green background.</p>
+                    <a class="btn" href="https://www.goodandcraft.com/product-page/chinoiserie-wallpaper-dark-green" target="_blank">View Wallpaper</a>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-img">
+                    <img src="images/chinoiserie-wallsauce.jpg" alt="Dark Chinoiserie Mural" onclick="openLightbox(this)">
+                </div>
+                <div class="card-body">
+                    <h3>Dark Chinoiserie Mural</h3>
+                    <div class="source">Wallsauce</div>
+                    <span class="price">Varies</span>
+                    <p class="desc">Inky greys with dusty pink flowers and emerald palm trees. Custom-sized wall murals.</p>
+                    <a class="btn" href="https://www.wallsauce.com/us/wall-murals-wallpaper/dark-chinoiserie" target="_blank">View Collection</a>
+                </div>
+            </div>
+
+            <!-- LIGHTER OPTIONS -->
+            <div class="card" style="border-color: #5a5a4a;">
+                <div class="card-img">
+                    <img src="images/light-chinoiserie-cream.jpg" alt="Cream Chinoiserie Birds" onclick="openLightbox(this)">
+                </div>
+                <div class="card-body">
+                    <span class="price" style="background: #4a4530; color: #d4c9a0;">Lighter Option</span>
+                    <h3>Chinoiserie Birds &mdash; Cream</h3>
+                    <div class="source">CocoDeco (Amazon)</div>
+                    <span class="price">Varies</span>
+                    <p class="desc">Flowers and birds on a warm cream background. Removable peel &amp; stick. Light cream creates dramatic contrast above dark green board &amp; batten.</p>
+                    <a class="btn" href="https://www.amazon.com/CocoDeco-Chinoiserie-Wallpaper-Background-Removable/dp/B09NTRBQ37" target="_blank">View Wallpaper</a>
+                </div>
+            </div>
+
+            <div class="card" style="border-color: #5a5a4a;">
+                <div class="card-img">
+                    <img src="images/light-chinoiserie-white.jpg" alt="White Romantic Chinoiserie" onclick="openLightbox(this)">
+                </div>
+                <div class="card-body">
+                    <span class="price" style="background: #4a4530; color: #d4c9a0;">Lighter Option</span>
+                    <h3>White Romantic Chinoiserie</h3>
+                    <div class="source">Feathr</div>
+                    <span class="price">Premium</span>
+                    <p class="desc">Pale blue background with white and grey exotic birds. Soft pastels with gold and silver accents that catch bronze sconce light.</p>
+                    <a class="btn" href="https://www.feathr.com/wallpaper/white-blue-romantic-chinoiserie-wallpaper/" target="_blank">View Wallpaper</a>
+                </div>
+            </div>
+
+            <div class="card" style="border-color: #5a5a4a;">
+                <div class="card-img">
+                    <img src="images/light-chinoiserie-peony.jpg" alt="Chinoiserie Peony Blossom" onclick="openLightbox(this)">
+                </div>
+                <div class="card-body">
+                    <span class="price" style="background: #4a4530; color: #d4c9a0;">Lighter Option</span>
+                    <h3>Chinoiserie Peony Blossom with Birds</h3>
+                    <div class="source">Wallmur</div>
+                    <span class="price">Varies</span>
+                    <p class="desc">Delicate peonies and Chinese birds on a light ground. Custom-sized mural format. The soft palette pops against dark green wainscoting.</p>
+                    <a class="btn" href="https://www.wallmur.com/wallpaper/chinoiserie-peony-blossom-with-chinese-birds-wallpaper-mural.html" target="_blank">View Wallpaper</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ART DECO / GEOMETRIC -->
+    <section class="style-section">
+        <div class="style-header">
+            <h2>Art Deco / Geometric</h2>
+            <span class="style-desc">Bold patterns that add glamour &mdash; gold accents pop against dark green and warm walnut.</span>
+        </div>
+        <div class="cards">
+            <div class="card" id="card-artdeco-green-gold-fan">
+                <div class="card-img">
+                    <img src="images/artdeco-green-gold-fan.jpg" alt="Green & Gold Art Deco Fan" onclick="openLightbox(this)">
+                </div>
+                <div class="card-body">
+                    <h3>Green &amp; Gold Art Deco Fan</h3>
+                    <div class="source">ONDECOR</div>
+                    <span class="price">Varies</span>
+                    <p class="desc">Geometric fan motifs with rich green and shimmering gold lines. Peel &amp; stick.</p>
+                    <a class="btn" href="https://ondecor.com/products/art-deco-wallpaper-geometric-fan-motifs-green-gold-c721" target="_blank">View Wallpaper</a>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-img">
+                    <img src="images/artdeco-black-gold.jpg" alt="Art Deco Black & Gold Lines" onclick="openLightbox(this)">
+                </div>
+                <div class="card-body">
+                    <h3>Art Deco Black &amp; Gold Lines</h3>
+                    <div class="source">ONDECOR</div>
+                    <span class="price">Varies</span>
+                    <p class="desc">Geometric line pattern in black and gold. Dramatic contrast above green board &amp; batten.</p>
+                    <a class="btn" href="https://ondecor.com/products/art-deco-wallpaper-geometric-line-pattern-black-gold-a436" target="_blank">View Wallpaper</a>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-img">
+                    <img src="images/artdeco-emerald-geometric.jpg" alt="Emerald Green & Gold Geometric" onclick="openLightbox(this)">
+                </div>
+                <div class="card-body">
+                    <h3>Emerald Green &amp; Gold Geometric</h3>
+                    <div class="source">Etsy / GiffyWalls</div>
+                    <span class="price">Varies</span>
+                    <p class="desc">Luxury emerald and gold geometric wall mural. Modern accent wall decor.</p>
+                    <a class="btn" href="https://www.etsy.com/listing/4391258455/emerald-green-and-gold-geometric-wall" target="_blank">View Wallpaper</a>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-img">
+                    <img src="images/artdeco-fan-peelstick.jpg" alt="Green & Gold Art Deco Fan Peel & Stick" onclick="openLightbox(this)">
+                </div>
+                <div class="card-body">
+                    <h3>Green &amp; Gold Art Deco Fan (Peel &amp; Stick)</h3>
+                    <div class="source">Etsy / ArtMyWallStore</div>
+                    <span class="price">Varies</span>
+                    <p class="desc">Deep emerald green background with metallic gold fan pattern accents. Both adhesive and paste options.</p>
+                    <a class="btn" href="https://www.etsy.com/listing/4351926387/green-and-gold-art-deco-fan-pattern" target="_blank">View Wallpaper</a>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-img">
+                    <img src="images/artdeco-feathr.jpg" alt="Green & Gold Art Deco Diamond" onclick="openLightbox(this)">
+                </div>
+                <div class="card-body">
+                    <h3>Green &amp; Gold Art Deco Diamond</h3>
+                    <div class="source">Feathr</div>
+                    <span class="price">Premium</span>
+                    <p class="desc">"Ex Tenebris Lux" &mdash; timeless diamond Art Deco style with gleaming gold metallic material.</p>
+                    <a class="btn" href="https://www.feathr.com/wallpaper/green-gold-art-deco-geometric-wallpaper-fe44802/" target="_blank">View Wallpaper</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ART DECO SCALLOPS (LIGHTER) -->
+    <section class="style-section">
+        <div class="style-header">
+            <h2>Art Deco Scallops (Lighter)</h2>
+            <span class="style-desc">Cream, gold, and silver fan patterns &mdash; lighter counterpoint to the dark room that still nods to 1920s glamour.</span>
+        </div>
+        <div class="cards">
+            <div class="card" style="border-color: #5a5a4a;">
+                <div class="card-img">
+                    <img src="images/scallop-white-gold.jpg" alt="Scallop Art Deco White Gold" onclick="openLightbox(this)">
+                </div>
+                <div class="card-body">
+                    <h3>Scallop Art Deco &mdash; White Gold</h3>
+                    <div class="source">Happywall</div>
+                    <span class="price">Varies</span>
+                    <p class="desc">Crisp white and soft gold scallop fans with Art Deco geometry. The gold picks up bronze sconce light while the white creates bright contrast above dark green B&amp;B.</p>
+                    <a class="btn" href="https://www.happywall.com/scallop-art-deco-geometric-white-gold-wallpaper" target="_blank">View Wallpaper</a>
+                </div>
+            </div>
+
+            <div class="card" style="border-color: #5a5a4a;">
+                <div class="card-img">
+                    <img src="images/scallop-glam-gold.jpg" alt="Fandom Art Deco Fan Glam Gold" onclick="openLightbox(this)">
+                </div>
+                <div class="card-body">
+                    <h3>Fandom Art Deco Fan &mdash; Glam Gold</h3>
+                    <div class="source">Happywall</div>
+                    <span class="price">Varies</span>
+                    <p class="desc">Abstract geometric fan in elegant vintage 1920s gold and white tones. Glamorous yet restrained &mdash; Studio McGee's "moody &amp; bright" approach.</p>
+                    <a class="btn" href="https://www.happywall.com/fandom-art-deco-fan-scallop-glam-gold-white-wallpaper" target="_blank">View Wallpaper</a>
+                </div>
+            </div>
+
+            <div class="card" style="border-color: #5a5a4a;">
+                <div class="card-img">
+                    <img src="images/scallop-shell-fan.jpg" alt="20s Art Deco Scallop Shell Fan" onclick="openLightbox(this)">
+                </div>
+                <div class="card-body">
+                    <h3>20s Glamour Scallop Shell Fan</h3>
+                    <div class="source">Happywall</div>
+                    <span class="price">Varies</span>
+                    <p class="desc">Rich golden scallop shell fans evoking the Roaring Twenties. Warmer and more gold-dominant &mdash; stunning under warm bronze lighting.</p>
+                    <a class="btn" href="https://www.happywall.com/20s-art-deco-glamour-scallop-shell-fan-gold-wallpaper" target="_blank">View Wallpaper</a>
+                </div>
+            </div>
+
+            <div class="card" style="border-color: #5a5a4a;">
+                <div class="card-img">
+                    <img src="images/scallop-tempaper.jpg" alt="Tempaper Mosaic Scallop" onclick="openLightbox(this)">
+                </div>
+                <div class="card-body">
+                    <h3>Mosaic Scallop &mdash; Peel &amp; Stick</h3>
+                    <div class="source">Tempaper</div>
+                    <span class="price">~$125/roll</span>
+                    <p class="desc">Minimalist tile-inspired scallop pattern. Available in off-white/black and emerald/off-white. Easy to apply and reposition &mdash; great for testing the lighter look.</p>
+                    <a class="btn" href="https://tempaper.com/products/mosaic-scallop-peel-stick-wallpaper" target="_blank">View Wallpaper</a>
+                </div>
+            </div>
+
+            <div class="card" style="border-color: #5a5a4a;">
+                <div class="card-img">
+                    <img src="images/scallop-york-metallic.jpg" alt="York Metallic Scallop" onclick="openLightbox(this)">
+                </div>
+                <div class="card-body">
+                    <h3>Metallic Scallop &mdash; Cream/Silver</h3>
+                    <div class="source">York (Candice Olson)</div>
+                    <span class="price">~$60-80/roll</span>
+                    <p class="desc">Half-moon overlapping fans with cream and silver metallic accents. Candice Olson designer line. The metallic finish catches sconce light like jewelry on the wall.</p>
+                    <a class="btn" href="https://www.yorkwallcoverings.com/products/metallic-scallop-glam-wallpaper-by-candice-olson" target="_blank">View Wallpaper</a>
+                </div>
+            </div>
+
+            <div class="card" style="border-color: #5a5a4a;">
+                <div class="card-img">
+                    <img src="images/scallop-bobbibeck.jpg" alt="Bobbi Beck Art Deco Scallop" onclick="openLightbox(this)">
+                </div>
+                <div class="card-body">
+                    <h3>Art Deco Scallop</h3>
+                    <div class="source">Bobbi Beck</div>
+                    <span class="price">Varies</span>
+                    <p class="desc">Classic Art Deco scallop in a clean, refined colorway. Simple geometry that lets your antiques and bronze hardware be the focus.</p>
+                    <a class="btn" href="https://www.bobbibeck.com/products/art-deco-scallop-wallpaper/" target="_blank">View Wallpaper</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- WILLIAM MORRIS / ARTS & CRAFTS -->
+    <section class="style-section">
+        <div class="style-header">
+            <h2>William Morris / Arts &amp; Crafts</h2>
+            <span class="style-desc">Timeless nature-inspired patterns &mdash; the quintessential wallpaper-above-wainscoting look.</span>
+        </div>
+        <div class="cards">
+            <div class="card" id="card-morris-ladesign">
+                <div class="card-img">
+                    <img src="images/morris-ladesign.jpg" alt="William Morris Collection" onclick="openLightbox(this)">
+                </div>
+                <div class="card-body">
+                    <h3>William Morris Collection (40% Off)</h3>
+                    <div class="source">L.A. Design Concepts</div>
+                    <span class="price">40% off retail</span>
+                    <p class="desc">Full range of authentic Morris patterns at discount. Free shipping over $200.</p>
+                    <a class="btn" href="https://ladesignconcepts.com/william-morris-wallpaper/" target="_blank">View Collection</a>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-img">
+                    <img src="images/morris-green.jpg" alt="William Morris Green" onclick="openLightbox(this)">
+                </div>
+                <div class="card-body">
+                    <h3>William Morris &mdash; Green</h3>
+                    <div class="source">Flat Vernacular</div>
+                    <span class="price">Premium</span>
+                    <p class="desc">Green-toned Morris designs with rich botanical detail and heritage craftsmanship.</p>
+                    <a class="btn" href="https://flatvernacular.com/products/william-morris-green-wallpaper" target="_blank">View Wallpaper</a>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-img">
+                    <img src="images/morris-original.jpg" alt="Morris & Co. Original" onclick="openLightbox(this)">
+                </div>
+                <div class="card-body">
+                    <h3>Morris &amp; Co. Originals</h3>
+                    <div class="source">Morris &amp; Co.</div>
+                    <span class="price">Premium</span>
+                    <p class="desc">Authentic 19th-century patterns from the UK factory. Look for "Golden Lily Midnight" or "Strawberry Thief" in dark colorways.</p>
+                    <a class="btn" href="https://www.wmorrisandco.com/uk/wallpaper/" target="_blank">View Collection</a>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-img">
+                    <img src="images/morris-peelstick.jpg" alt="William Morris Peel & Stick" onclick="openLightbox(this)">
+                </div>
+                <div class="card-body">
+                    <h3>William Morris Peel &amp; Stick</h3>
+                    <div class="source">CostaCover</div>
+                    <span class="price">Budget</span>
+                    <p class="desc">Arts &amp; Crafts style patterns in removable peel &amp; stick format. Budget-friendly option.</p>
+                    <a class="btn" href="https://costacover.com/collections/william-morris-style" target="_blank">View Collection</a>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-img">
+                    <img src="images/morris-wallpaperdirect.jpg" alt="Morris Wallpapers Collection" onclick="openLightbox(this)">
+                </div>
+                <div class="card-body">
+                    <h3>Morris Wallpapers &mdash; Full Range</h3>
+                    <div class="source">Wallpaper Direct</div>
+                    <span class="price">Varies</span>
+                    <p class="desc">Extensive Morris &amp; Co. collection with multiple dark and green colorways. Wide selection.</p>
+                    <a class="btn" href="https://www.wallpaperdirect.com/us/brands/morris" target="_blank">View Collection</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- TARTAN / PLAID -->
+    <section class="style-section">
+        <div class="style-header">
+            <h2>Tartan / Plaid</h2>
+            <span class="style-desc">Cozy and masculine &mdash; perfect for a basement den, home bar, or library vibe.</span>
+        </div>
+        <div class="cards">
+            <div class="card" id="card-tartan-earl">
+                <div class="card-img">
+                    <img src="images/tartan-earl.jpg" alt="Earl Dark Green Tartan" onclick="openLightbox(this)">
+                </div>
+                <div class="card-body">
+                    <h3>Earl Dark Green Tartan</h3>
+                    <div class="source">Brewster (Arthouse)</div>
+                    <span class="price">~$40/roll</span>
+                    <p class="desc">Dark green, navy, teal &amp; pale yellow large-scale plaid. 20.9" x 33ft roll. Unpasted vinyl.</p>
+                    <a class="btn" href="https://www.brewsterwallcovering.com/ah297205-earl-dark-green-tartan-wallpaper" target="_blank">View Wallpaper</a>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-img">
+                    <img src="images/tartan-classic.jpg" alt="Classic Green Tartan" onclick="openLightbox(this)">
+                </div>
+                <div class="card-body">
+                    <h3>Classic Green Tartan</h3>
+                    <div class="source">Painted Paper</div>
+                    <span class="price">Varies</span>
+                    <p class="desc">Rich dark green tartan that adds sophistication and warmth. Cozy and inviting.</p>
+                    <a class="btn" href="https://paintedpaper.com/products/classic-green-tartan-wallpaper" target="_blank">View Wallpaper</a>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-img">
+                    <img src="images/tartan-equestrian.jpg" alt="Equestrian Plaid Green" onclick="openLightbox(this)">
+                </div>
+                <div class="card-body">
+                    <h3>Equestrian Plaid &mdash; Shades of Green</h3>
+                    <div class="source">Wallpaper from the 70s</div>
+                    <span class="price">Varies</span>
+                    <p class="desc">Classic equestrian-inspired plaid in multiple shades of green. Distinguished and timeless.</p>
+                    <a class="btn" href="https://www.wallpaperfromthe70s.com/wallpaper-equestrian-plaid-shades-of-green" target="_blank">View Wallpaper</a>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-img">
+                    <img src="images/tartan-hunter.jpg" alt="Country Plaid Tartan Hunter Green" onclick="openLightbox(this)">
+                </div>
+                <div class="card-body">
+                    <h3>Country Plaid Tartan &mdash; Hunter Green</h3>
+                    <div class="source">Happywall</div>
+                    <span class="price">Varies</span>
+                    <p class="desc">Deep greens and earthy tones. Custom-sized to your wall dimensions.</p>
+                    <a class="btn" href="https://www.happywall.com/en/wallpaper/tartan" target="_blank">View Wallpaper</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SPEAKEASY / PROHIBITION -->
+    <section class="style-section">
+        <div class="style-header">
+            <h2>Speakeasy / Prohibition</h2>
+            <span class="style-desc">1920s Art Deco arches and metallic glamour &mdash; made for bronze sconces and antique barware.</span>
+        </div>
+        <div class="cards">
+            <div class="card" id="card-speakeasy-black">
+                <div class="card-img">
+                    <img src="images/speakeasy-black.jpg" alt="Antonina Vella Speakeasy Black" onclick="openLightbox(this)">
+                </div>
+                <div class="card-body">
+                    <h3>Antonina Vella Speakeasy &mdash; Black</h3>
+                    <div class="source">York Wallcoverings</div>
+                    <span class="price">~$56/roll</span>
+                    <p class="desc">Sophisticated overlapping arches with metallic sheen on black. The defining speakeasy pattern &mdash; pairs perfectly with bronze fixtures.</p>
+                    <a class="btn" href="https://www.amazon.com/York-Wallcoverings-CA1540-Speakeasy-Wallpaper/dp/B07T2SY27J" target="_blank">View Wallpaper</a>
+                </div>
+            </div>
+
+            <div class="card" id="card-speakeasy-gold">
+                <div class="card-img">
+                    <img src="images/speakeasy-gold.jpg" alt="Speakeasy Gold" onclick="openLightbox(this)">
+                </div>
+                <div class="card-body">
+                    <h3>Antonina Vella Speakeasy &mdash; Gold</h3>
+                    <div class="source">Wallpaper Boulevard</div>
+                    <span class="price">~$56/roll</span>
+                    <p class="desc">Same iconic arch pattern in warm gold tones. Gold would echo your bronze sconces and warm walnut floors beautifully.</p>
+                    <a class="btn" href="https://www.wallpaperboulevard.com/product/gold-speakeasy-1920s-art-deco-44061.aspx" target="_blank">View Wallpaper</a>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-img">
+                    <img src="images/speakeasy-blue.jpg" alt="Speakeasy Blue" onclick="openLightbox(this)">
+                </div>
+                <div class="card-body">
+                    <h3>Antonina Vella Speakeasy &mdash; Blue</h3>
+                    <div class="source">Wallpaper Boulevard</div>
+                    <span class="price">~$56/roll</span>
+                    <p class="desc">Deep blue colorway of the overlapping arches. A cooler complement to the dark green board &amp; batten below.</p>
+                    <a class="btn" href="https://www.wallpaperboulevard.com/product/blue-speakeasy-1920s-art-deco-44062.aspx" target="_blank">View Wallpaper</a>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-img">
+                    <img src="images/speakeasy-metallic.jpg" alt="Speakeasy Metallic" onclick="openLightbox(this)">
+                </div>
+                <div class="card-body">
+                    <h3>Speakeasy &mdash; Blacks Metallic</h3>
+                    <div class="source">Mahones Wallpaper Shop</div>
+                    <span class="price">~$56/roll</span>
+                    <p class="desc">Black with metallic highlights that catch light from your bronze sconces. Unpasted paper, professional quality.</p>
+                    <a class="btn" href="https://mahoneswallpapershop.com/products/ca1540-deco-speakeasy-blacks-metallic-antonina-vella-wallpaper" target="_blank">View Wallpaper</a>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-img">
+                    <img src="images/speakeasy-artdeco-collection.jpg" alt="World of Wallpaper Art Deco" onclick="openLightbox(this)">
+                </div>
+                <div class="card-body">
+                    <h3>Deco Textured Wallpaper</h3>
+                    <div class="source">World of Wallpaper</div>
+                    <span class="price">Varies</span>
+                    <p class="desc">Textured Art Deco design in rich tones of teal, navy, and gold. Contemporary twist on vintage glamour.</p>
+                    <a class="btn" href="https://www.worldofwallpaper.com/us/theme/art-deco.html" target="_blank">View Collection</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- TEXTURED GRASSCLOTH -->
+    <section class="style-section">
+        <div class="style-header">
+            <h2>Textured Grasscloth</h2>
+            <span class="style-desc">Natural woven fibers add warmth and depth &mdash; beautiful backdrop for antique statement pieces and bronze hardware.</span>
+        </div>
+        <div class="cards">
+            <div class="card" id="card-grasscloth-charcoal-sisal">
+                <div class="card-img">
+                    <img src="images/grasscloth-charcoal-sisal.jpg" alt="Charcoal Sisal Grasscloth" onclick="openLightbox(this)">
+                </div>
+                <div class="card-body">
+                    <h3>Natural Sisal &mdash; Charcoal Grey</h3>
+                    <div class="source">California Wallpaper</div>
+                    <span class="price">Varies</span>
+                    <p class="desc">Sophisticated dark gray sisal with subtle woven finish. Adds organic depth and texture without competing with your antiques.</p>
+                    <a class="btn" href="https://california-wallpaper.com/products/natural-sisal-grasscloth-wallpaper-in-charcoal-grey-41022-copy" target="_blank">View Wallpaper</a>
+                </div>
+            </div>
+
+            <div class="card" id="card-grasscloth-bronze-green">
+                <div class="card-img">
+                    <img src="images/grasscloth-bronze-green.jpg" alt="Bronze Green Metallic Grasscloth" onclick="openLightbox(this)">
+                </div>
+                <div class="card-body">
+                    <h3>Grasscloth Stripes &mdash; Bronze Green Metallic</h3>
+                    <div class="source">ShopHouzz</div>
+                    <span class="price">Varies</span>
+                    <p class="desc">Bronze and green metallic grasscloth stripes. The bronze tones directly complement your sconces and antique hardware.</p>
+                    <a class="btn" href="https://shophouzz.com/products/textured-wallpaper-grasscloth-stripes-bronze-green-metallic-1-roll-prvw-vr-179716782" target="_blank">View Wallpaper</a>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-img">
+                    <img src="images/grasscloth-tempaper.jpg" alt="Tempaper Faux Grasscloth" onclick="openLightbox(this)">
+                </div>
+                <div class="card-body">
+                    <h3>Textured Faux Grasscloth &mdash; Peel &amp; Stick</h3>
+                    <div class="source">Tempaper</div>
+                    <span class="price">Varies</span>
+                    <p class="desc">Realistic grasscloth texture in peel &amp; stick format. Available in Metallic Sage Green, Bronze, and more. Easy DIY install.</p>
+                    <a class="btn" href="https://tempaper.com/products/textured-grasscloth-peel-stick-wallpaper" target="_blank">View Wallpaper</a>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-img">
+                    <img src="images/grasscloth-black-collection.jpg" alt="Black Grasscloth Collection" onclick="openLightbox(this)">
+                </div>
+                <div class="card-body">
+                    <h3>Black Grasscloth Collection</h3>
+                    <div class="source">US Wall Decor</div>
+                    <span class="price">Varies</span>
+                    <p class="desc">Handcrafted from natural jute, sisal, and raffia. Bold black that ties into your blacked-out ceiling above.</p>
+                    <a class="btn" href="https://uswalldecor.com/collections/black-grasscloth-wallpaper" target="_blank">View Collection</a>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-img">
+                    <img src="images/grasscloth-york.jpg" alt="York Grasscloth Collection" onclick="openLightbox(this)">
+                </div>
+                <div class="card-body">
+                    <h3>York Natural Grasscloth Collection</h3>
+                    <div class="source">York Wallcoverings</div>
+                    <span class="price">Varies</span>
+                    <p class="desc">Premium natural wallcoverings crafted from organic materials. Wide range of dark and earthy tones available.</p>
+                    <a class="btn" href="https://www.yorkwallcoverings.com/collections/grasscloth-wallpaper" target="_blank">View Collection</a>
+                </div>
+            </div>
+
+            <!-- LIGHTER OPTIONS -->
+            <div class="card" style="border-color: #5a5a4a;">
+                <div class="card-img">
+                    <img src="images/light-grasscloth-cream.jpg" alt="Cream Sisal Grasscloth" onclick="openLightbox(this)">
+                </div>
+                <div class="card-body">
+                    <span class="price" style="background: #4a4530; color: #d4c9a0;">Lighter Option</span>
+                    <h3>Cream Sisal Grasscloth</h3>
+                    <div class="source">Poppy Print Studio</div>
+                    <span class="price">Varies</span>
+                    <p class="desc">Solid natural off-white with warm undertones. Real sisal reeds over a deeper paper ground for tonal dimension. Maximum contrast above dark green B&amp;B.</p>
+                    <a class="btn" href="https://www.poppyprintstudio.com/products/cream-grasscloth-wallpaper-real-sisal-texture" target="_blank">View Wallpaper</a>
+                </div>
+            </div>
+
+            <div class="card" style="border-color: #5a5a4a;">
+                <div class="card-img">
+                    <img src="images/light-grasscloth-tan.jpg" alt="Tan Sisal Grasscloth" onclick="openLightbox(this)">
+                </div>
+                <div class="card-body">
+                    <span class="price" style="background: #4a4530; color: #d4c9a0;">Lighter Option</span>
+                    <h3>Tan Sisal &mdash; Natural Matte</h3>
+                    <div class="source">Mayflower Wallpaper</div>
+                    <span class="price">Varies</span>
+                    <p class="desc">Classic neutral tan grasscloth with subtle woven texture. Warm and organic &mdash; bridges walnut floor tones and the green wainscoting below.</p>
+                    <a class="btn" href="https://mayflowerwallpaper.com/products/na206-sisal-grasscloth-neutral-tan-matte" target="_blank">View Wallpaper</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FUN / CHARACTER -->
+    <section class="style-section">
+        <div class="style-header">
+            <h2>Fun / Character &amp; Whimsical</h2>
+            <span class="style-desc">Quirky animals and playful scenes on dark backgrounds &mdash; unexpected personality that pairs with vintage curiosities.</span>
+        </div>
+        <div class="cards">
+            <div class="card" id="card-hackney-empire-midnight">
+                <div class="card-img">
+                    <img src="images/hackney-empire-midnight.jpg" alt="House of Hackney Empire Midnight" onclick="openLightbox(this)">
+                </div>
+                <div class="card-body">
+                    <h3>Hackney Empire &mdash; Midnight</h3>
+                    <div class="source">House of Hackney</div>
+                    <span class="price">Premium (~$298/roll)</span>
+                    <p class="desc">A hookah-smoking sloth, frog in a bowler hat, fanning otter, and imbibing badger on midnight blue. The ultimate speakeasy-meets-whimsy statement. Eco-friendly.</p>
+                    <a class="btn" href="https://www.houseofhackney.com/products/hackney-empire-wallpaper-midnight" target="_blank">View Wallpaper</a>
+                </div>
+            </div>
+
+            <div class="card" id="card-dark-botanical-animals">
+                <div class="card-img">
+                    <img src="images/dark-botanical-animals.jpg" alt="Dark Botanical with Animals" onclick="openLightbox(this)">
+                </div>
+                <div class="card-body">
+                    <h3>Dark Botanical with Animals</h3>
+                    <div class="source">Wallmur</div>
+                    <span class="price">Varies</span>
+                    <p class="desc">Lush dark botanical backdrop with exotic animals woven through the foliage. Moody and immersive mural format.</p>
+                    <a class="btn" href="https://www.wallmur.com/wallpaper/dark-botanical-wallpaper-with-animals.html" target="_blank">View Wallpaper</a>
+                </div>
+            </div>
+
+            <div class="card" id="card-mitchellblack-animals">
+                <div class="card-img">
+                    <img src="images/mitchellblack-animals.jpg" alt="Mitchell Black Stalking Tiger" onclick="openLightbox(this)">
+                </div>
+                <div class="card-body">
+                    <h3>Stalking Tiger &mdash; Black Moss</h3>
+                    <div class="source">Mitchell Black</div>
+                    <span class="price">Varies</span>
+                    <p class="desc">Tigers prowling through dark botanical elements. Available in Dark Moss, Jewel, and Moon colorways. Bold and dramatic.</p>
+                    <a class="btn" href="https://mitchellblack.com/collections/animal-wallpaper" target="_blank">View Collection</a>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-img">
+                    <img src="images/vintage-animals.jpg" alt="Vintage Animal Wallpaper" onclick="openLightbox(this)">
+                </div>
+                <div class="card-body">
+                    <h3>Coringa &mdash; Vintage Animals</h3>
+                    <div class="source">Wallpaper from the 70s</div>
+                    <span class="price">Varies</span>
+                    <p class="desc">Retro-inspired exotic animal patterns with a cheerful, carefree quality. Cozy familiarity meets vintage charm.</p>
+                    <a class="btn" href="https://www.wallpaperfromthe70s.com/wallpaper/wallpaper-patterns/animal-wallpaper/" target="_blank">View Collection</a>
+                </div>
+            </div>
+
+            <!-- LIGHTER OPTIONS -->
+            <div class="card" style="border-color: #5a5a4a;">
+                <div class="card-img">
+                    <img src="images/light-ardmore-collection.jpg" alt="Cole & Son Ardmore Collection" onclick="openLightbox(this)">
+                </div>
+                <div class="card-body">
+                    <span class="price" style="background: #4a4530; color: #d4c9a0;">Lighter Option</span>
+                    <h3>Ardmore Collection</h3>
+                    <div class="source">Cole &amp; Son</div>
+                    <span class="price">Premium</span>
+                    <p class="desc">African-inspired exotic flora and fauna: rare birds, big cats, elephants, monkeys, and Zulu beadwork patterns. Lighter grounds with vibrant color &mdash; playful luxury.</p>
+                    <a class="btn" href="https://cole-and-son.com/us/ardmore-wallpaper-collection/" target="_blank">View Collection</a>
+                </div>
+            </div>
+
+            <div class="card" style="border-color: #5a5a4a;">
+                <div class="card-img">
+                    <img src="images/light-nene-birds.jpg" alt="Cole & Son Nene" onclick="openLightbox(this)">
+                </div>
+                <div class="card-body">
+                    <span class="price" style="background: #4a4530; color: #d4c9a0;">Lighter Option</span>
+                    <h3>Nene &mdash; Crowned Crane</h3>
+                    <div class="source">Cole &amp; Son</div>
+                    <span class="price">Premium (~$200+/roll)</span>
+                    <p class="desc">Whimsical world where billed fish sit alongside striking Crowned Cranes on a light background. Sophisticated enough for antiques, fun enough to be a conversation starter.</p>
+                    <a class="btn" href="https://cole-and-son.com/products/nene" target="_blank">View Wallpaper</a>
+                </div>
+            </div>
+
+            <div class="card" style="border-color: #5a5a4a;">
+                <div class="card-img">
+                    <img src="images/light-whimsical-hygge.jpg" alt="Hygge & West Whimsical" onclick="openLightbox(this)">
+                </div>
+                <div class="card-body">
+                    <span class="price" style="background: #4a4530; color: #d4c9a0;">Lighter Option</span>
+                    <h3>Whimsical Collection</h3>
+                    <div class="source">Hygge &amp; West</div>
+                    <span class="price">Varies</span>
+                    <p class="desc">Durable, fade-resistant whimsical patterns on lighter backgrounds. Fun prints that add personality without overwhelming your antique statement pieces.</p>
+                    <a class="btn" href="https://www.hyggeandwest.com/collections/whimsical-wallpaper" target="_blank">View Collection</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- STYLE THEORY & RESEARCH -->
+    <section class="style-section" style="margin-top: 60px;">
+        <div class="style-header" style="border-bottom-color: #8b6914;">
+            <h2 style="font-size: 2rem;">Style Theory &amp; Designer Research</h2>
+            <span class="style-desc">What the pros say about rooms like yours &mdash; and what real projects teach us.</span>
+        </div>
+
+        <!-- Designer Insights Grid -->
+        <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(420px, 1fr)); gap: 24px; margin-top: 24px;">
+
+            <!-- Card: The Two-Thirds Rule -->
+            <div style="background: #252525; border-radius: 12px; padding: 28px; border: 1px solid #3a3a3a;">
+                <h3 style="color: #c9a84c; margin-bottom: 12px; font-size: 1.2rem;">The Two-Thirds Rule</h3>
+                <p style="color: #a89f91; font-size: 0.92rem; margin-bottom: 12px;">
+                    Interior designers consistently recommend board and batten at <strong style="color: #e0ddd5;">one-third</strong> of the wall height, with wallpaper taking the remaining <strong style="color: #e0ddd5;">two-thirds</strong>. This proportion creates natural visual balance &mdash; the eye focuses on the wallpaper while the wainscoting anchors and grounds the space.
+                </p>
+                <p style="color: #a89f91; font-size: 0.92rem;">
+                    For a standard 8-foot ceiling, that means board and batten to about 32", with wallpaper from there to the ceiling. With your blacked-out ceiling, the wallpaper becomes the transition zone between the dark green below and black above.
+                </p>
+                <div style="margin-top: 12px; font-size: 0.8rem; color: #5a7a6a;">
+                    Sources: <a href="https://www.pennymorrison.com/journal/how-to-find-the-right-pattern-size-for-your-wall" target="_blank" style="color: #5a7a6a;">Penny Morrison</a>, <a href="https://www.katemoynihan.com/post/one-simple-rule-of-proportions-2-3" target="_blank" style="color: #5a7a6a;">Kate Moynihan Design</a>
+                </div>
+            </div>
+
+            <!-- Card: Pattern vs Texture -->
+            <div style="background: #252525; border-radius: 12px; padding: 28px; border: 1px solid #3a3a3a;">
+                <h3 style="color: #c9a84c; margin-bottom: 12px; font-size: 1.2rem;">Pattern vs. Texture: The Devon Grace Rule</h3>
+                <p style="color: #a89f91; font-size: 0.92rem; margin-bottom: 12px;">
+                    <strong style="color: #e0ddd5;">Devon Grace Interiors</strong> offers a decisive framework: choose <strong style="color: #e0ddd5;">textures</strong> (grasscloth, cork, textiles) when artwork or sculptural lighting will hang in front of the wallpaper. Choose <strong style="color: #e0ddd5;">patterns</strong> when the wallpaper itself is the focal point.
+                </p>
+                <p style="color: #a89f91; font-size: 0.92rem;">
+                    <strong style="color: #b8cfc2;">For your room:</strong> If your bronze sconces and antiques are the stars, go grasscloth &mdash; it adds depth without competing. If the wallpaper should be the statement, go bold with a pattern (florals, chinoiserie, characters).
+                </p>
+                <div style="margin-top: 12px; font-size: 0.8rem; color: #5a7a6a;">
+                    Source: <a href="https://www.devongraceinteriors.com/blog/everything-you-want-to-know-about-wallpaper" target="_blank" style="color: #5a7a6a;">Devon Grace Interiors</a>
+                </div>
+            </div>
+
+            <!-- Card: Studio McGee Dark Room Tips -->
+            <div style="background: #252525; border-radius: 12px; padding: 28px; border: 1px solid #3a3a3a;">
+                <h3 style="color: #c9a84c; margin-bottom: 12px; font-size: 1.2rem;">Studio McGee: Going Dark Without the Cave</h3>
+                <p style="color: #a89f91; font-size: 0.92rem; margin-bottom: 12px;">
+                    <strong style="color: #e0ddd5;">Shea McGee</strong> says dark paint actually creates more light reflection, not less. The key is incorporating <strong style="color: #e0ddd5;">light elements through furniture, textiles, and window treatments</strong> to add contrast. She also favors dark green, blue, or gray over pure black for livability.
+                </p>
+                <p style="color: #a89f91; font-size: 0.92rem;">
+                    Her two-tone approach &mdash; dark paneling below, lighter treatment above &mdash; creates what she calls a "moody &amp; bright" feeling. <strong style="color: #b8cfc2;">Your setup naturally does this</strong> with the dark green B&amp;B grounding the space and wallpaper providing visual relief above.
+                </p>
+                <div style="margin-top: 12px; font-size: 0.8rem; color: #5a7a6a;">
+                    Source: <a href="https://studio-mcgee.com/our-tips-for-taking-a-room-dark-studio-mcgee/" target="_blank" style="color: #5a7a6a;">Studio McGee</a>
+                </div>
+            </div>
+
+            <!-- Card: Emily Henderson on Moody Rooms -->
+            <div style="background: #252525; border-radius: 12px; padding: 28px; border: 1px solid #3a3a3a;">
+                <h3 style="color: #c9a84c; margin-bottom: 12px; font-size: 1.2rem;">Emily Henderson: The Case for Restraint</h3>
+                <p style="color: #a89f91; font-size: 0.92rem; margin-bottom: 12px;">
+                    Henderson's moody dark green dining room project proved that <strong style="color: #e0ddd5;">dark green walls are "the new white walls"</strong> &mdash; they work with nearly everything. She recommends subtle wallpaper patterns (not bold graphics) in moody rooms, treating them as "a secret treat for the eye."
+                </p>
+                <p style="color: #a89f91; font-size: 0.92rem;">
+                    <strong style="color: #b8cfc2;">Translation for your room:</strong> A tonal wallpaper (like a dark grasscloth or subtle damask) may outperform a loud pattern if you want the antiques and sconces to shine. But if the room is meant to be a showstopper, go bold.
+                </p>
+                <div style="margin-top: 12px; font-size: 0.8rem; color: #5a7a6a;">
+                    Sources: <a href="https://stylebyemilyhenderson.com/moody-dark-green-dining-room" target="_blank" style="color: #5a7a6a;">Emily Henderson</a>, <a href="https://stylebyemilyhenderson.com/dark-moody-family-room-ideas" target="_blank" style="color: #5a7a6a;">EH Dark Rooms</a>
+                </div>
+            </div>
+
+            <!-- Card: Warm Metals in Dark Spaces -->
+            <div style="background: #252525; border-radius: 12px; padding: 28px; border: 1px solid #3a3a3a;">
+                <h3 style="color: #c9a84c; margin-bottom: 12px; font-size: 1.2rem;">Bronze &amp; Warm Metals: A Match Made for Dark Rooms</h3>
+                <p style="color: #a89f91; font-size: 0.92rem; margin-bottom: 12px;">
+                    Designers universally agree that <strong style="color: #e0ddd5;">warm metals (bronze, brass, copper, gold) are the ideal accent against dark backdrops</strong>. They catch and reflect ambient light, creating depth and preventing the "cave effect." Oil-rubbed bronze and antique brass are specifically called out in speakeasy design as essential.
+                </p>
+                <p style="color: #a89f91; font-size: 0.92rem;">
+                    <strong style="color: #b8cfc2;">Wallpaper implication:</strong> Wallpapers with gold or metallic elements (Art Deco golds, metallic grasscloth, chinoiserie with gold details) will amplify the glow from your bronze sconces. The light will dance across metallic surfaces in the wallpaper, creating a warm, intimate atmosphere.
+                </p>
+                <div style="margin-top: 12px; font-size: 0.8rem; color: #5a7a6a;">
+                    Sources: <a href="https://www.3adesignstudio.com/blog/2014/10/26/charcoal-wall-round-up" target="_blank" style="color: #5a7a6a;">3A Design Studio</a>, <a href="https://www.highcraft.net/blog/speakeasy-basement-remodel/" target="_blank" style="color: #5a7a6a;">HighCraft Builders</a>
+                </div>
+            </div>
+
+            <!-- Card: Real Speakeasy Projects -->
+            <div style="background: #252525; border-radius: 12px; padding: 28px; border: 1px solid #3a3a3a;">
+                <h3 style="color: #c9a84c; margin-bottom: 12px; font-size: 1.2rem;">Lessons from Real Speakeasy Basement Projects</h3>
+                <p style="color: #a89f91; font-size: 0.92rem; margin-bottom: 12px;">
+                    <strong style="color: #e0ddd5;">HighCraft Builders</strong> transformed a basement into a hidden speakeasy with antique brass hardware, oil-rubbed bronze finishes, oxidized copper details, and an exposed-beam ceiling painted black. <strong style="color: #e0ddd5;">Architectural Justice</strong> used rich wood tones with handcrafted metal accents and stone countertops to achieve old-world charm.
+                </p>
+                <p style="color: #a89f91; font-size: 0.92rem;">
+                    Common thread: <strong style="color: #b8cfc2;">layered textures and collected-over-time authenticity</strong>. Both projects avoided "matchy-matchy" and instead mixed materials &mdash; brick, wood, metal, fabric &mdash; to feel like a real space that evolved, not a themed room. Your antiques and vintage pieces will naturally create this effect.
+                </p>
+                <div style="margin-top: 12px; font-size: 0.8rem; color: #5a7a6a;">
+                    Sources: <a href="https://www.highcraft.net/blog/speakeasy-basement-remodel/" target="_blank" style="color: #5a7a6a;">HighCraft</a>, <a href="https://www.architecturaljustice.com/speakeasy-style/" target="_blank" style="color: #5a7a6a;">Architectural Justice</a>, <a href="https://mydesignkc.com/the-designkc-awards/2870-the-speakeasy-project-an-art-deco-themed-basement/" target="_blank" style="color: #5a7a6a;">Design KC</a>
+                </div>
+            </div>
+
+            <!-- Card: Pattern Scale -->
+            <div style="background: #252525; border-radius: 12px; padding: 28px; border: 1px solid #3a3a3a;">
+                <h3 style="color: #c9a84c; margin-bottom: 12px; font-size: 1.2rem;">Pattern Scale: Size Matters Above Wainscoting</h3>
+                <p style="color: #a89f91; font-size: 0.92rem; margin-bottom: 12px;">
+                    Since wallpaper above board and batten covers a <strong style="color: #e0ddd5;">shorter wall section</strong> (roughly the upper two-thirds), pattern scale needs careful thought. <strong style="color: #e0ddd5;">Medium-scale patterns generally work best</strong> &mdash; tiny prints can look busy, while oversized motifs may not show enough of the repeat to read properly.
+                </p>
+                <p style="color: #a89f91; font-size: 0.92rem;">
+                    <strong style="color: #b8cfc2;">Exception:</strong> Large-scale murals and chinoiserie scenes can work above wainscoting because they're meant to be viewed as a partial scene &mdash; the "cropped" effect actually adds drama. Art Deco geometric repeats also work at larger scales because their pattern is immediately recognizable even in partial view.
+                </p>
+                <div style="margin-top: 12px; font-size: 0.8rem; color: #5a7a6a;">
+                    Sources: <a href="https://www.pennymorrison.com/journal/how-to-find-the-right-pattern-size-for-your-wall" target="_blank" style="color: #5a7a6a;">Penny Morrison</a>, <a href="https://rebelwalls.com/wainscoting-wallpaper" target="_blank" style="color: #5a7a6a;">Rebel Walls</a>
+                </div>
+            </div>
+
+            <!-- Card: Light vs Dark Wallpaper -->
+            <div style="background: #252525; border-radius: 12px; padding: 28px; border: 1px solid #5a5a4a;">
+                <h3 style="color: #c9a84c; margin-bottom: 12px; font-size: 1.2rem;">Light vs. Dark Wallpaper Above Dark Wainscoting</h3>
+                <p style="color: #a89f91; font-size: 0.92rem; margin-bottom: 12px;">
+                    <strong style="color: #e0ddd5;">Dark wallpaper</strong> (black, navy, deep green backgrounds) creates a cocooning, enveloping effect &mdash; the walls, ceiling, and wainscoting merge into one moody atmosphere. This is the "full moody" approach and feels like a speakeasy or private club.
+                </p>
+                <p style="color: #a89f91; font-size: 0.92rem; margin-bottom: 12px;">
+                    <strong style="color: #e0ddd5;">Light wallpaper</strong> (cream, gold, white backgrounds) creates dramatic contrast &mdash; the eye is drawn to the bright band between the dark green below and black ceiling above. This is Studio McGee's "moody &amp; bright" approach and makes the room feel more open while still being dramatic.
+                </p>
+                <p style="color: #a89f91; font-size: 0.92rem;">
+                    <strong style="color: #b8cfc2;">Both work.</strong> The light scallops and cream chinoiseries will make your bronze sconces and antiques pop by contrast. The dark options will make them glow warmly in a unified atmosphere. Order samples of both to see which feeling you prefer in your actual space.
+                </p>
+            </div>
+
+            <!-- Card: The "Moody Levels" Framework -->
+            <div style="background: #252525; border-radius: 12px; padding: 28px; border: 1px solid #3a3a3a;">
+                <h3 style="color: #c9a84c; margin-bottom: 12px; font-size: 1.2rem;">Your Room is "Full Moody" &mdash; Lean Into It</h3>
+                <p style="color: #a89f91; font-size: 0.92rem; margin-bottom: 12px;">
+                    Designers describe two levels: <strong style="color: #e0ddd5;">"moody-lite"</strong> (dark walls with light ceiling) and <strong style="color: #e0ddd5;">"full moody"</strong> (dark walls AND dark ceiling). Your blacked-out ceiling puts you firmly in "full moody" territory &mdash; which is a commitment, but it means you should embrace it rather than fight it.
+                </p>
+                <p style="color: #a89f91; font-size: 0.92rem;">
+                    <strong style="color: #b8cfc2;">What this means for wallpaper:</strong> You don't need wallpaper to "lighten" the room. Instead, choose wallpaper that adds <strong style="color: #e0ddd5;">warmth, texture, or intrigue</strong>. Wallpapers with dark backgrounds (black, deep green, navy) will feel cohesive. The contrast should come from metallic accents, art, textiles, and lighting &mdash; not from the wallpaper fighting the room's palette.
+                </p>
+                <div style="margin-top: 12px; font-size: 0.8rem; color: #5a7a6a;">
+                    Sources: <a href="https://tbrothersrenovations.com/moody-interior-design/" target="_blank" style="color: #5a7a6a;">TBrothers Renovations</a>, <a href="https://www.fivetenconstructiondesign.com/plan-it-pretty-blog/transform-your-space-with-moody-basement-design-ideas-and-finding-the-right-contractor-near-you" target="_blank" style="color: #5a7a6a;">FiveTen Design</a>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- FINAL RECOMMENDATIONS -->
+    <div class="recommendations" style="margin-top: 50px;">
+        <h2>Final Recommendations &mdash; Based on Style Theory</h2>
+        <p style="color: #a89f91; margin-bottom: 8px;">After researching designer projects, style theory, and real speakeasy basement builds, here's what the evidence points to for your specific room:</p>
+        <p style="color: #5a7a6a; font-size: 0.85rem; margin-bottom: 20px;">Dark green board &amp; batten + walnut floors + blacked-out ceiling + bronze sconces + antique statement pieces</p>
+
+        <h3 style="color: #c9a84c; font-size: 1.1rem; margin-bottom: 14px; border-bottom: 1px solid rgba(255,255,255,0.08); padding-bottom: 8px;">Tier 1: Best Matches Based on Design Theory</h3>
+        <ul class="rec-list">
+            <li>
+                <span class="rec-label">If Antiques Are the Star</span>
+                <span class="rec-text"><a href="#card-grasscloth-bronze-green" style="color: #c9a84c; text-decoration: none;"><strong>Bronze-Green Metallic Grasscloth</strong></a> or <a href="#card-grasscloth-charcoal-sisal" style="color: #c9a84c; text-decoration: none;"><strong>Charcoal Sisal</strong></a> &mdash; Devon Grace's rule says texture when art/sconces go in front. The bronze-green metallic literally matches your sconces. This is the "designer's choice."</span>
+            </li>
+            <li>
+                <span class="rec-label">If Wallpaper Is the Star</span>
+                <span class="rec-text"><a href="#card-speakeasy-black" style="color: #c9a84c; text-decoration: none;"><strong>Antonina Vella Speakeasy in Black/Gold</strong></a> &mdash; Metallic arches glow under bronze sconces (the warm-metal amplification effect). Already proven in real speakeasy basement projects. At ~$56/roll, it's accessible too.</span>
+            </li>
+            <li>
+                <span class="rec-label">Best of Both Worlds</span>
+                <span class="rec-text"><a href="#card-chinoiserie-york" style="color: #c9a84c; text-decoration: none;"><strong>York Bird &amp; Blossom Chinoiserie in Black</strong></a> &mdash; Metallic finish catches sconce light like grasscloth, but the pattern is a statement. Works above wainscoting as a "cropped scene." Timeless with antiques.</span>
+            </li>
+        </ul>
+
+        <h3 style="color: #c9a84c; font-size: 1.1rem; margin: 20px 0 14px; border-bottom: 1px solid rgba(255,255,255,0.08); padding-bottom: 8px;">Tier 2: Strong Contenders</h3>
+        <ul class="rec-list">
+            <li>
+                <span class="rec-label">Maximum Personality</span>
+                <span class="rec-text"><a href="#card-hackney-empire-midnight" style="color: #c9a84c; text-decoration: none;"><strong>House of Hackney Empire Midnight</strong></a> &mdash; Drinking animals in bowler hats on midnight blue. Premium at ~$298/roll but unforgettable. The "collected curiosity" vibe perfectly matches antique statement pieces.</span>
+            </li>
+            <li>
+                <span class="rec-label">Timeless Classic</span>
+                <span class="rec-text"><a href="#card-morris-ladesign" style="color: #c9a84c; text-decoration: none;"><strong>William Morris in a dark colorway</strong></a> (Golden Lily Midnight or Strawberry Thief) &mdash; Emily Henderson's "restraint" approach. Subtle enough to let antiques shine, iconic enough to be interesting. Won't date.</span>
+            </li>
+            <li>
+                <span class="rec-label">Moody Dramatic</span>
+                <span class="rec-text"><a href="#card-moody-floral-black" style="color: #c9a84c; text-decoration: none;"><strong>Dark Moody Florals on black</strong></a> (Tempaper or RollsRolla) &mdash; Black background ties into ceiling, florals soften the room. Studio McGee's contrast principle: the light floral elements provide visual relief in a "full moody" room.</span>
+            </li>
+        </ul>
+
+        <h3 style="color: #c9a84c; font-size: 1.1rem; margin: 20px 0 14px; border-bottom: 1px solid rgba(255,255,255,0.08); padding-bottom: 8px;">Tier 3: Specific Vibe Picks</h3>
+        <ul class="rec-list">
+            <li>
+                <span class="rec-label">English Pub / Library</span>
+                <span class="rec-text"><a href="#card-tartan-earl" style="color: #c9a84c; text-decoration: none;"><strong>Earl Dark Green Tartan</strong></a> &mdash; Plaid + dark green B&amp;B + walnut + leather chairs = instant private club. Works perfectly with older antiques and bronze.</span>
+            </li>
+            <li>
+                <span class="rec-label">Prohibition Speakeasy</span>
+                <span class="rec-text"><a href="#card-speakeasy-black" style="color: #c9a84c; text-decoration: none;"><strong>Speakeasy Black</strong></a> + <a href="#card-tropical-dark" style="color: #c9a84c; text-decoration: none;"><strong>Dark Tropical Leaves</strong></a> &mdash; Mix Art Deco arches on the main walls with a tropical accent (real speakeasy projects layer multiple textures rather than going uniform).</span>
+            </li>
+            <li>
+                <span class="rec-label">Eclectic Collector</span>
+                <span class="rec-text"><a href="#card-mitchellblack-animals" style="color: #c9a84c; text-decoration: none;"><strong>Stalking Tiger Black Moss</strong></a> (Mitchell Black) or <a href="#card-dark-botanical-animals" style="color: #c9a84c; text-decoration: none;"><strong>Dark Botanical Animals</strong></a> &mdash; Bold enough to be a conversation piece, dark enough to stay cohesive. Your antiques become part of the story.</span>
+            </li>
+        </ul>
+
+        <div style="margin-top: 24px; padding: 20px; background: rgba(0,0,0,0.2); border-radius: 8px;">
+            <h3 style="color: #c9a84c; font-size: 1.1rem; margin-bottom: 12px;">Key Design Principles to Remember</h3>
+            <ul style="color: #b8cfc2; font-size: 0.9rem; list-style: disc; padding-left: 20px;">
+                <li style="margin-bottom: 8px;"><strong style="color: #e0ddd5;">Dark background wallpapers will feel most cohesive</strong> &mdash; you're "full moody" with a black ceiling and dark green walls, so don't fight it with light wallpaper</li>
+                <li style="margin-bottom: 8px;"><strong style="color: #e0ddd5;">Metallic elements in wallpaper amplify bronze sconces</strong> &mdash; gold, copper, and bronze tones in the paper will catch and reflect warm light</li>
+                <li style="margin-bottom: 8px;"><strong style="color: #e0ddd5;">Texture over pattern if art/sconces are the focal point</strong> &mdash; grasscloth lets your collected pieces speak; pattern makes the walls the show</li>
+                <li style="margin-bottom: 8px;"><strong style="color: #e0ddd5;">Medium-scale patterns work best above wainscoting</strong> &mdash; except murals and chinoiserie, which look great "cropped"</li>
+                <li style="margin-bottom: 8px;"><strong style="color: #e0ddd5;">Mix materials for authenticity</strong> &mdash; the best speakeasy projects avoid "themed" and instead layer different textures, ages, and finishes</li>
+                <li><strong style="color: #e0ddd5;">Order samples</strong> &mdash; Studio McGee says swatch obsessively; see how patterns look under your actual bronze sconce lighting at different times of day</li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- ORIGINAL TOP PICKS (kept as quick reference) -->
+    <div class="recommendations">
+        <h2>Quick Reference: Top Picks by Category</h2>
+        <p style="color: #a89f91; margin-bottom: 20px;">With dark green board &amp; batten, walnut floors, blacked-out ceiling, bronze sconces, and antique statement pieces &mdash; your room has a rich, moody, collected vibe.</p>
+        <ul class="rec-list">
+            <li>
+                <span class="rec-label">Best Speakeasy Vibe</span>
+                <span class="rec-text"><a href="#card-speakeasy-black" style="color: #c9a84c; text-decoration: none;">Antonina Vella Speakeasy in Black</a> or <a href="#card-speakeasy-gold" style="color: #c9a84c; text-decoration: none;">Gold</a> &mdash; the metallic arches will glow under bronze sconces, instant prohibition bar</span>
+            </li>
+            <li>
+                <span class="rec-label">Best with Antiques</span>
+                <span class="rec-text"><a href="#card-grasscloth-bronze-green" style="color: #c9a84c; text-decoration: none;">Bronze-Green Metallic Grasscloth</a> &mdash; textured, organic, lets your antiques and sconces be the stars</span>
+            </li>
+            <li>
+                <span class="rec-label">Most Fun / Conversation Starter</span>
+                <span class="rec-text"><a href="#card-hackney-empire-midnight" style="color: #c9a84c; text-decoration: none;">House of Hackney Empire Midnight</a> &mdash; drinking badgers and hookah-smoking sloths, sophisticated yet playful</span>
+            </li>
+            <li>
+                <span class="rec-label">Most Dramatic</span>
+                <span class="rec-text"><a href="#card-moody-floral-black" style="color: #c9a84c; text-decoration: none;">Moody Dark Florals</a> &mdash; black background ties into your ceiling, florals soften the room</span>
+            </li>
+            <li>
+                <span class="rec-label">Most Cohesive</span>
+                <span class="rec-text"><a href="#card-chinoiserie-york" style="color: #c9a84c; text-decoration: none;">Dark Chinoiserie (York Bird &amp; Blossom in Black)</a> &mdash; elegant, timeless, works perfectly above wainscoting</span>
+            </li>
+            <li>
+                <span class="rec-label">Most Sophisticated</span>
+                <span class="rec-text"><a href="#card-morris-ladesign" style="color: #c9a84c; text-decoration: none;">William Morris in a dark colorway</a> &mdash; the quintessential board-and-batten companion, ages well with antiques</span>
+            </li>
+            <li>
+                <span class="rec-label">Most Bold / Glamorous</span>
+                <span class="rec-text"><a href="#card-artdeco-green-gold-fan" style="color: #c9a84c; text-decoration: none;">Art Deco Green &amp; Gold Geometric</a> &mdash; gold warms the walnut floors and echoes bronze hardware</span>
+            </li>
+            <li>
+                <span class="rec-label">Coziest</span>
+                <span class="rec-text"><a href="#card-tartan-earl" style="color: #c9a84c; text-decoration: none;">Dark Green Tartan</a> &mdash; perfect pub, library, or den feel with your collected antiques</span>
+            </li>
+        </ul>
+    </div>
+
+</div>
+
+<footer>
+    <p>Wallpaper Options for Basement Room &mdash; Curated March 2026</p>
+</footer>
+
+<script>
+    function openLightbox(img) {
+        document.getElementById('lightbox-img').src = img.src;
+        document.getElementById('lightbox').classList.add('active');
+    }
+    function closeLightbox() {
+        document.getElementById('lightbox').classList.remove('active');
+    }
+    document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape') closeLightbox();
+    });
+
+    // Auto-add room preview toggles for cards that have generated previews
+    document.addEventListener('DOMContentLoaded', function() {
+        document.querySelectorAll('.card-img img').forEach(function(img) {
+            var src = img.getAttribute('src');
+            if (!src || !src.startsWith('images/')) return;
+            var name = src.replace('images/', '').replace('.jpg', '');
+            var previewSrc = 'images/room-preview-' + name + '.png';
+
+            // Check if preview image exists by trying to load it
+            var testImg = new Image();
+            testImg.onload = function() {
+                // Preview exists - add toggle UI
+                var cardImg = img.parentElement;
+                var card = cardImg.parentElement;
+
+                // Create room preview img
+                var roomImg = document.createElement('img');
+                roomImg.src = previewSrc;
+                roomImg.alt = 'Room preview';
+                roomImg.className = 'hidden';
+                roomImg.onclick = function() { openLightbox(this); };
+                cardImg.appendChild(roomImg);
+
+                // Create toggle buttons in card-body
+                var cardBody = card.querySelector('.card-body');
+                var toggle = document.createElement('div');
+                toggle.className = 'img-toggle';
+
+                var btnPattern = document.createElement('button');
+                btnPattern.textContent = 'Pattern';
+                btnPattern.className = 'active';
+                btnPattern.onclick = function() {
+                    img.classList.remove('hidden');
+                    roomImg.classList.add('hidden');
+                    btnPattern.classList.add('active');
+                    btnRoom.classList.remove('active');
+                };
+
+                var btnRoom = document.createElement('button');
+                btnRoom.textContent = 'Room Preview';
+                btnRoom.onclick = function() {
+                    img.classList.add('hidden');
+                    roomImg.classList.remove('hidden');
+                    btnRoom.classList.add('active');
+                    btnPattern.classList.remove('active');
+                };
+
+                toggle.appendChild(btnPattern);
+                toggle.appendChild(btnRoom);
+                cardBody.insertBefore(toggle, cardBody.firstChild);
+            };
+            testImg.src = previewSrc;
+        });
+    });
+</script>
+
+<!-- Firebase SDK -->
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-database-compat.js"></script>
+
+<script>
+(function() {
+    // ============================================
+    // FIREBASE CONFIG - Fill in your project details
+    // Go to https://console.firebase.google.com
+    // 1. Create a new project (or use existing)
+    // 2. Go to Project Settings > General > Your apps > Add web app
+    // 3. Copy the firebaseConfig object below
+    // 4. Go to Realtime Database > Create Database > Start in test mode
+    // ============================================
+    var firebaseConfig = {
+        // PASTE YOUR FIREBASE CONFIG HERE:
+        // apiKey: "...",
+        // authDomain: "...",
+        // databaseURL: "...",
+        // projectId: "...",
+        // storageBucket: "...",
+        // messagingSenderId: "...",
+        // appId: "..."
+    };
+
+    var db = null;
+    var votesRef = null;
+    var useFirebase = !!(firebaseConfig.apiKey && firebaseConfig.databaseURL);
+
+    if (useFirebase) {
+        firebase.initializeApp(firebaseConfig);
+        db = firebase.database();
+        votesRef = db.ref('votes');
+    }
+
+    // Local vote tracking (prevents double-voting per browser)
+    var myVotes = JSON.parse(localStorage.getItem('wallpaper-votes') || '{}');
+
+    // Get wallpaper name from a card element
+    function getCardName(card) {
+        var img = card.querySelector('.card-img img');
+        if (!img) return null;
+        var src = img.getAttribute('src');
+        if (!src) return null;
+        return src.replace('images/', '').replace('.jpg', '');
+    }
+
+    // Get display name from card
+    function getCardTitle(card) {
+        var h3 = card.querySelector('.card-body h3');
+        return h3 ? h3.textContent : '';
+    }
+
+    // Add vote buttons to all cards
+    function initVoteButtons() {
+        document.querySelectorAll('.card').forEach(function(card) {
+            var name = getCardName(card);
+            if (!name) return;
+
+            var cardBody = card.querySelector('.card-body');
+            if (!cardBody) return;
+
+            var btn = document.createElement('button');
+            btn.className = 'vote-btn' + (myVotes[name] ? ' voted' : '');
+            btn.setAttribute('data-wp', name);
+            btn.innerHTML = '<span class="heart">' + (myVotes[name] ? '&#10084;' : '&#9825;') + '</span> <span class="vote-count" id="count-' + name + '">0</span>';
+
+            btn.addEventListener('click', function(e) {
+                e.stopPropagation();
+                toggleVote(name, btn);
+            });
+
+            cardBody.appendChild(btn);
+        });
+    }
+
+    // Toggle vote for a wallpaper
+    function toggleVote(name, btn) {
+        if (myVotes[name]) {
+            // Un-vote
+            delete myVotes[name];
+            btn.classList.remove('voted');
+            btn.querySelector('.heart').innerHTML = '&#9825;';
+            updateVoteCount(name, -1);
+        } else {
+            // Vote
+            myVotes[name] = true;
+            btn.classList.add('voted');
+            btn.querySelector('.heart').innerHTML = '&#10084;';
+            updateVoteCount(name, 1);
+        }
+        localStorage.setItem('wallpaper-votes', JSON.stringify(myVotes));
+    }
+
+    // Update vote count in Firebase or local state
+    var localCounts = {};
+
+    function updateVoteCount(name, delta) {
+        if (useFirebase) {
+            votesRef.child(name).transaction(function(current) {
+                return Math.max(0, (current || 0) + delta);
+            });
+        } else {
+            localCounts[name] = Math.max(0, (localCounts[name] || 0) + delta);
+            var el = document.getElementById('count-' + name);
+            if (el) el.textContent = localCounts[name];
+            localStorage.setItem('wallpaper-vote-counts', JSON.stringify(localCounts));
+            updateLeaderboard();
+        }
+    }
+
+    // Update leaderboard display
+    function updateLeaderboard() {
+        var counts = useFirebase ? {} : localCounts;
+        if (useFirebase) return; // Firebase listener handles this
+
+        var items = [];
+        for (var name in counts) {
+            if (counts[name] > 0) {
+                items.push({ name: name, votes: counts[name] });
+            }
+        }
+        renderLeaderboard(items);
+    }
+
+    function renderLeaderboard(items) {
+        items.sort(function(a, b) { return b.votes - a.votes; });
+        items = items.slice(0, 10);
+
+        var board = document.getElementById('leaderboard');
+        var list = document.getElementById('leaderboard-list');
+
+        if (items.length === 0) {
+            board.style.display = 'none';
+            return;
+        }
+
+        board.style.display = 'block';
+        list.innerHTML = '';
+
+        // Build a map of name -> card title
+        var titleMap = {};
+        document.querySelectorAll('.card').forEach(function(card) {
+            var n = getCardName(card);
+            if (n) titleMap[n] = getCardTitle(card);
+        });
+
+        items.forEach(function(item, i) {
+            var li = document.createElement('li');
+            li.className = 'leaderboard-item';
+            li.innerHTML = '<span class="leaderboard-rank">' + (i + 1) + '</span>' +
+                '<span class="leaderboard-name">' + (titleMap[item.name] || item.name) + '</span>' +
+                '<span class="leaderboard-votes">' + item.votes + ' vote' + (item.votes !== 1 ? 's' : '') + '</span>';
+
+            // Click to scroll to card
+            var cardId = document.querySelector('.card[id$="' + item.name + '"]');
+            if (!cardId) {
+                // Try finding by image src
+                var img = document.querySelector('img[src="images/' + item.name + '.jpg"]');
+                if (img) cardId = img.closest('.card');
+            }
+            if (cardId) {
+                li.style.cursor = 'pointer';
+                li.addEventListener('click', function() {
+                    cardId.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                    cardId.style.boxShadow = '0 0 20px rgba(201,168,76,0.5)';
+                    setTimeout(function() { cardId.style.boxShadow = ''; }, 2000);
+                });
+            }
+
+            list.appendChild(li);
+        });
+    }
+
+    // Initialize
+    document.addEventListener('DOMContentLoaded', function() {
+        initVoteButtons();
+
+        if (useFirebase) {
+            // Listen for real-time vote updates
+            votesRef.on('value', function(snapshot) {
+                var data = snapshot.val() || {};
+                var items = [];
+                for (var name in data) {
+                    var el = document.getElementById('count-' + name);
+                    if (el) el.textContent = data[name];
+                    if (data[name] > 0) {
+                        items.push({ name: name, votes: data[name] });
+                    }
+                }
+                renderLeaderboard(items);
+            });
+        } else {
+            // Load local counts
+            localCounts = JSON.parse(localStorage.getItem('wallpaper-vote-counts') || '{}');
+            document.querySelectorAll('.vote-btn').forEach(function(btn) {
+                var name = btn.getAttribute('data-wp');
+                if (localCounts[name]) {
+                    var el = document.getElementById('count-' + name);
+                    if (el) el.textContent = localCounts[name];
+                }
+            });
+            updateLeaderboard();
+        }
+    });
+})();
+</script>
+
+</body>
+</html>
