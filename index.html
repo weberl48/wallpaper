@@ -263,6 +263,15 @@
         .admin-mode .remove-btn { display: block; }
         .card { position: relative; }
         .card.removed { display: none !important; }
+        .card .swipe-hint {
+            position: absolute; top: 0; left: 0; right: 0; bottom: 0;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 2.5rem; font-weight: 700; pointer-events: none;
+            opacity: 0; transition: opacity 0.15s; z-index: 20;
+            text-shadow: 0 2px 8px rgba(0,0,0,0.7);
+        }
+        .card .swipe-hint.vote { color: #c9a84c; background: rgba(201,168,76,0.12); }
+        .card .swipe-hint.unvote { color: #e74c3c; background: rgba(231,76,60,0.12); }
         .restore-all-btn { display: none; position: fixed; bottom: 20px; right: 20px; background: #2d7a4f; color: #fff; border: none; padding: 12px 20px; border-radius: 8px; font-size: 1rem; cursor: pointer; z-index: 1000; box-shadow: 0 4px 12px rgba(0,0,0,0.4); }
         .restore-all-btn:hover { background: #3a9963; }
         .admin-mode .restore-all-btn { display: block; }
@@ -1808,10 +1817,64 @@
         });
     }
 
+    // Mobile swipe to vote
+    function initSwipeVoting() {
+        var SWIPE_THRESHOLD = 60;
+        document.querySelectorAll('.card').forEach(function(card) {
+            var hint = document.createElement('div');
+            hint.className = 'swipe-hint';
+            card.appendChild(hint);
+
+            var startX = 0, startY = 0, swiping = false;
+            card.addEventListener('touchstart', function(e) {
+                startX = e.touches[0].clientX;
+                startY = e.touches[0].clientY;
+                swiping = true;
+            }, { passive: true });
+
+            card.addEventListener('touchmove', function(e) {
+                if (!swiping) return;
+                var dx = e.touches[0].clientX - startX;
+                var dy = e.touches[0].clientY - startY;
+                // If scrolling vertically, cancel swipe
+                if (Math.abs(dy) > Math.abs(dx)) { swiping = false; hint.style.opacity = '0'; return; }
+                if (Math.abs(dx) > 30) {
+                    hint.style.opacity = '1';
+                    if (dx > 0) { hint.className = 'swipe-hint vote'; hint.textContent = '\u2764 Vote'; }
+                    else { hint.className = 'swipe-hint unvote'; hint.textContent = '\u2715 Unvote'; }
+                } else {
+                    hint.style.opacity = '0';
+                }
+            }, { passive: true });
+
+            card.addEventListener('touchend', function(e) {
+                hint.style.opacity = '0';
+                if (!swiping) return;
+                swiping = false;
+                var dx = e.changedTouches[0].clientX - startX;
+                if (Math.abs(dx) < SWIPE_THRESHOLD) return;
+
+                var name = getCardName(card);
+                if (!name) return;
+                var charcoal = isCharcoalCard(card);
+                var votes = charcoal ? myVotesCharcoal : myVotes;
+                var btn = card.querySelector('.vote-btn');
+                if (!btn) return;
+
+                if (dx > 0 && !votes[name]) {
+                    toggleVote(name, btn, charcoal);
+                } else if (dx < 0 && votes[name]) {
+                    toggleVote(name, btn, charcoal);
+                }
+            }, { passive: true });
+        });
+    }
+
     // Initialize
     document.addEventListener('DOMContentLoaded', function() {
         initVoteButtons();
         addRemoveButtons();
+        initSwipeVoting();
         document.getElementById('restore-all-btn').addEventListener('click', function() {
             if (confirm('Restore all removed wallpapers?')) {
                 if (useFirebase) { removedRef.set(null); removedCharcoalRef.set(null); }
