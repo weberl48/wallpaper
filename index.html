@@ -170,6 +170,16 @@
         .card-body .price {
             display: none;
         }
+        .green-vote-badge {
+            display: inline-block;
+            background: rgba(45,74,62,0.4);
+            border: 1px solid #5a7a6a;
+            color: #b8cfc2;
+            padding: 2px 10px;
+            border-radius: 10px;
+            font-size: 0.8rem;
+            margin-bottom: 8px;
+        }
 
         .card-body .desc {
             font-size: 0.9rem;
@@ -419,22 +429,20 @@
     <img id="lightbox-img" src="" alt="Wallpaper preview">
 </div>
 
-<header>
+<header style="background: linear-gradient(135deg, #2a2a2a, #333, #1a1a1a); border-bottom: 3px solid #555;">
     <h1>Basement Wallpaper Options</h1>
-    <p>Curated wallpaper selections to complement your basement room design</p>
+    <p>Charcoal board &amp; batten &mdash; curated wallpaper selections</p>
     <div class="room-context">
-        <span class="tag">Dark Green Board &amp; Batten</span>
-        <span class="tag">Walnut Floors</span>
-        <span class="tag">Blacked-Out Ceiling</span>
-        <span class="tag">Bronze Sconces</span>
-        <span class="tag">Antique Statement Pieces</span>
-    </div>
-    <div style="margin-top: 18px; display: flex; justify-content: center; gap: 16px; flex-wrap: wrap;">
-        <a href="#charcoal-section" style="background: rgba(85,85,85,0.3); border: 1px solid #555; color: #e0ddd5; padding: 8px 18px; border-radius: 6px; text-decoration: none; font-size: 0.95rem; transition: background 0.2s;">Charcoal B&amp;B Variant &darr;</a>
+        <span class="tag" style="background: #3a3a3a; border-color: #555; color: #b0b0b0;">Charcoal Board &amp; Batten</span>
+        <span class="tag" style="background: #3a3a3a; border-color: #555; color: #b0b0b0;">Walnut Floors</span>
+        <span class="tag" style="background: #3a3a3a; border-color: #555; color: #b0b0b0;">Blacked-Out Ceiling</span>
+        <span class="tag" style="background: #3a3a3a; border-color: #555; color: #b0b0b0;">Bronze Sconces</span>
+        <span class="tag" style="background: #3a3a3a; border-color: #555; color: #b0b0b0;">Antique Statement Pieces</span>
     </div>
 </header>
 
-<div class="container">
+<!-- GREEN SECTION HIDDEN - charcoal B&B chosen -->
+<div class="container" style="display: none;">
 
     <!-- VOTING LEADERBOARD -->
     <div class="leaderboard" id="leaderboard" style="display: none;">
@@ -1210,17 +1218,7 @@
 <!-- ============================================ -->
 <!-- CHARCOAL BOARD & BATTEN SECTION              -->
 <!-- ============================================ -->
-<div id="charcoal-section" style="scroll-margin-top: 20px;">
-    <div style="background: linear-gradient(135deg, #2a2a2a, #333, #1a1a1a); text-align: center; padding: 50px 20px 30px; border-top: 3px solid #555; border-bottom: 3px solid #555; margin-top: 40px;">
-        <h1 style="font-size: 2.2rem; color: #e0ddd5; margin-bottom: 8px;">Charcoal Board &amp; Batten</h1>
-        <p style="color: #a89f91; font-size: 1rem; margin-bottom: 16px;">More subtle than black but adds depth &mdash; lets the wallpaper and bar top be the stars</p>
-        <div class="room-context">
-            <span class="tag" style="background: #3a3a3a; border-color: #555; color: #b0b0b0;">Charcoal/Dark Slate B&amp;B</span>
-            <span class="tag" style="background: #3a3a3a; border-color: #555; color: #b0b0b0;">Walnut Floors</span>
-            <span class="tag" style="background: #3a3a3a; border-color: #555; color: #b0b0b0;">Blacked-Out Ceiling</span>
-            <span class="tag" style="background: #3a3a3a; border-color: #555; color: #b0b0b0;">Bronze Sconces</span>
-        </div>
-    </div>
+<div id="charcoal-section">
 
     <div class="container">
 
@@ -1243,6 +1241,7 @@
                     <div class="card-body">
                         <h3>Natural Sisal &mdash; Charcoal Grey</h3>
                         <div class="source">California Wallpaper</div>
+                        <span class="green-vote-badge">* 1 vote on green B&amp;B</span>
                         <span class="price">Varies</span>
                         <p class="desc">Sophisticated dark gray sisal with subtle woven finish. Tone-on-tone with the charcoal B&amp;B creates a seamless, textured envelope. Lets sconces and antiques lead.</p>
                         <a class="btn" href="https://california-wallpaper.com/products/natural-sisal-grasscloth-wallpaper-in-charcoal-grey-41022-copy" target="_blank">View Wallpaper</a>
@@ -1269,6 +1268,7 @@
                     <div class="card-body">
                         <h3>Dark &amp; Moody Tropical Leaves (Gold)</h3>
                         <div class="source">Think Noir</div>
+                        <span class="green-vote-badge">* 2 votes on green B&amp;B</span>
                         <span class="price">~$60+</span>
                         <p class="desc">Gold-accented tropical leaves on dark background. The dark base blends with charcoal wainscoting while gold leaf elements catch sconce light.</p>
                         <a class="btn" href="https://thinknoirwallpaper.com/products/dark-gold-moody-tropical-leaves-wallpaper" target="_blank">View Wallpaper</a>
@@ -1295,6 +1295,7 @@
                     <div class="card-body">
                         <h3>Antonina Vella Speakeasy &mdash; Black</h3>
                         <div class="source">York Wallcoverings</div>
+                        <span class="green-vote-badge">* 1 vote on green B&amp;B</span>
                         <span class="price">~$56/roll</span>
                         <p class="desc">Metallic gold arches on black. The gold catches sconce light beautifully, and the dark base transitions seamlessly from charcoal wainscoting.</p>
                         <a class="btn" href="https://www.peelstick.com/products/cv4400-york-antonina-vella-speakeasy-wallpaper-black" target="_blank">View Wallpaper</a>
@@ -1360,6 +1361,7 @@
                     <div class="card-body">
                         <h3>York Natural Grasscloth Collection</h3>
                         <div class="source">York Wallcoverings</div>
+                        <span class="green-vote-badge">* 2 votes on green B&amp;B</span>
                         <span class="price">Varies</span>
                         <p class="desc">Premium natural wallcoverings crafted from organic materials. The warm, earthy tones complement charcoal B&amp;B beautifully &mdash; natural texture against the cool grey.</p>
                         <a class="btn" href="https://www.yorkwallcoverings.com/collections/grasscloth-wallpaper" target="_blank">View Collection</a>
@@ -1386,6 +1388,7 @@
                     <div class="card-body">
                         <h3>Oasis Grey Damask</h3>
                         <div class="source">Mayflower Wallpaper</div>
+                        <span class="green-vote-badge">* 2 votes on green B&amp;B</span>
                         <span class="price">~$65/roll</span>
                         <p class="desc">Muted grey damask &mdash; tonal with charcoal B&amp;B for a seamless, sophisticated look. The subtle motif adds interest without competing. Made in USA.</p>
                         <a class="btn" href="https://mayflowerwallpaper.com/products/oasis-damask-mf41202" target="_blank">View on Mayflower</a>
@@ -1516,6 +1519,7 @@
                     <div class="card-body">
                         <h3>Linen Texture &mdash; Dark Taupe</h3>
                         <div class="source">Origin Wallcoverings</div>
+                        <span class="green-vote-badge">* 1 vote on green B&amp;B</span>
                         <span class="price">~$50/roll</span>
                         <p class="desc">Dark taupe linen eco-texture. Warm horizontal weave pulls warmth from walnut floors while adding quiet sophistication above charcoal B&amp;B.</p>
                         <a class="btn" href="https://www.originwallcoverings.com/wallpaper-linen-texture-dark-taupe-347381.html" target="_blank">View Wallpaper</a>
@@ -1535,6 +1539,32 @@
                     </div>
                 </div>
 
+                <div class="card" id="card-c-speakeasy-metallic">
+                    <div class="card-img">
+                        <img src="images/speakeasy-metallic.jpg" alt="Speakeasy Metallic" onclick="openLightbox(this)">
+                    </div>
+                    <div class="card-body">
+                        <h3>Speakeasy &mdash; Blacks Metallic</h3>
+                        <div class="source">Mahones Wallpaper Shop</div>
+                        <span class="green-vote-badge">* 2 votes on green B&amp;B</span>
+                        <p class="desc">Black with metallic highlights that catch light from your bronze sconces. The metallic sheen pops against the matte charcoal B&amp;B. Unpasted paper, professional quality.</p>
+                        <a class="btn" href="https://mahoneswallpapershop.com/products/ca1540-deco-speakeasy-blacks-metallic-antonina-vella-wallpaper" target="_blank">View Wallpaper</a>
+                    </div>
+                </div>
+
+                <div class="card" id="card-c-light-grasscloth-cream">
+                    <div class="card-img">
+                        <img src="images/light-grasscloth-cream.jpg" alt="Cream Sisal Grasscloth" onclick="openLightbox(this)">
+                    </div>
+                    <div class="card-body">
+                        <h3>Cream Sisal Grasscloth</h3>
+                        <div class="source">Poppy Print Studio</div>
+                        <span class="green-vote-badge">* 1 vote on green B&amp;B</span>
+                        <p class="desc">Solid natural off-white with warm undertones. Real sisal reeds over a deeper paper ground. Maximum contrast above charcoal B&amp;B &mdash; bright and airy.</p>
+                        <a class="btn" href="https://www.poppyprintstudio.com/products/cream-grasscloth-wallpaper-real-sisal-texture" target="_blank">View Wallpaper</a>
+                    </div>
+                </div>
+
                 <div class="card" id="card-c-lush-overgrown">
                     <div class="card-img">
                         <img src="images/lush-overgrown.jpg" alt="Dark Moody Floral - Lush Overgrown" onclick="openLightbox(this)">
@@ -1542,6 +1572,7 @@
                     <div class="card-body">
                         <h3>Dark Moody Floral &mdash; Lush Overgrown</h3>
                         <div class="source">Etsy</div>
+                        <span class="green-vote-badge">* 4 votes on green B&amp;B</span>
                         <span class="price">Varies</span>
                         <p class="desc">Lush overgrown pattern with plants, flowers, and snake on a dramatic black background. The dark base melts into charcoal wainscoting while the rich botanicals add life.</p>
                         <a class="btn" href="https://www.etsy.com/listing/1753568895/dark-moody-floral-wallpaper-lush" target="_blank">View Wallpaper</a>
@@ -1555,7 +1586,7 @@
 </div>
 
 <footer>
-    <p>Wallpaper Options for Basement Room &mdash; Dark Green &amp; Charcoal B&amp;B &mdash; Curated March 2026</p>
+    <p>Wallpaper Options for Basement Room &mdash; Charcoal B&amp;B &mdash; Curated March 2026</p>
 </footer>
 
 <script>
