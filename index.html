@@ -263,15 +263,6 @@
         .admin-mode .remove-btn { display: block; }
         .card { position: relative; }
         .card.removed { display: none !important; }
-        .card .swipe-hint {
-            position: absolute; top: 0; left: 0; right: 0; bottom: 0;
-            display: flex; align-items: center; justify-content: center;
-            font-size: 2.5rem; font-weight: 700; pointer-events: none;
-            opacity: 0; transition: opacity 0.15s; z-index: 20;
-            text-shadow: 0 2px 8px rgba(0,0,0,0.7);
-        }
-        .card .swipe-hint.vote { color: #c9a84c; background: rgba(201,168,76,0.12); }
-        .card .swipe-hint.unvote { color: #e74c3c; background: rgba(231,76,60,0.12); }
         .restore-all-btn { display: none; position: fixed; bottom: 20px; right: 20px; background: #2d7a4f; color: #fff; border: none; padding: 12px 20px; border-radius: 8px; font-size: 1rem; cursor: pointer; z-index: 1000; box-shadow: 0 4px 12px rgba(0,0,0,0.4); }
         .restore-all-btn:hover { background: #3a9963; }
         .admin-mode .restore-all-btn { display: block; }
@@ -337,6 +328,92 @@
             .cards { grid-template-columns: 1fr; }
             .rec-list li { flex-direction: column; gap: 4px; }
             .rec-label { min-width: auto; }
+        }
+
+        /* Tinder Mode */
+        #tinder-overlay {
+            display: none; position: fixed; top: 0; left: 0; right: 0; bottom: 0;
+            background: #1a1a1a; z-index: 900; flex-direction: column;
+        }
+        #tinder-overlay.active { display: flex; }
+        body.tinder-active { overflow: hidden; }
+
+        .tinder-top {
+            display: flex; align-items: center; justify-content: space-between;
+            padding: 12px 16px; background: #222; border-bottom: 1px solid #333;
+        }
+        .tinder-close { background: none; border: none; color: #a89f91; font-size: 1.5rem; cursor: pointer; padding: 4px 8px; }
+        .tinder-progress { color: #a89f91; font-size: 0.85rem; }
+        .tinder-section-tabs { display: flex; gap: 8px; }
+        .tinder-section-tabs button {
+            background: transparent; border: 1px solid #555; color: #a89f91;
+            padding: 5px 14px; border-radius: 16px; font-size: 0.8rem; cursor: pointer;
+        }
+        .tinder-section-tabs button.active { background: #2d4a3e; border-color: #5a7a6a; color: #e0ddd5; }
+        .tinder-section-tabs button[data-section="charcoal"].active { background: #3a3a3a; border-color: #666; }
+
+        .tinder-card-area {
+            flex: 1; display: flex; align-items: center; justify-content: center;
+            padding: 16px; overflow: hidden; position: relative;
+        }
+        .tinder-card {
+            width: 100%; max-width: 400px; background: #252525; border-radius: 16px;
+            overflow: hidden; border: 1px solid #3a3a3a; position: relative;
+            transition: transform 0.3s ease, opacity 0.3s ease;
+            touch-action: pan-y;
+        }
+        .tinder-card.swipe-right { transform: translateX(120%) rotate(12deg); opacity: 0; }
+        .tinder-card.swipe-left { transform: translateX(-120%) rotate(-12deg); opacity: 0; }
+        .tinder-card.entering { transform: scale(0.9); opacity: 0; }
+
+        .tinder-card-img {
+            width: 100%; height: 300px; overflow: hidden; background: #333; position: relative;
+        }
+        .tinder-card-img img { width: 100%; height: 100%; object-fit: cover; }
+        .tinder-card-body { padding: 16px; }
+        .tinder-card-body h3 { font-size: 1.15rem; color: #e0ddd5; margin-bottom: 4px; }
+        .tinder-card-body .source { font-size: 0.85rem; color: #8b6914; font-weight: 600; margin-bottom: 6px; }
+        .tinder-card-body .price { display: inline-block; background: #3a3a3a; color: #b0b0b0; padding: 2px 10px; border-radius: 10px; font-size: 0.8rem; margin-bottom: 8px; }
+        .tinder-card-body .desc { font-size: 0.85rem; color: #a89f91; margin-bottom: 10px; line-height: 1.4; }
+        .tinder-card-body a.btn { display: inline-block; background: #3a3a3a; color: #e0ddd5; text-decoration: none; padding: 6px 16px; border-radius: 6px; font-size: 0.85rem; }
+        .tinder-vote-status {
+            position: absolute; top: 16px; padding: 6px 16px; border-radius: 8px;
+            font-size: 1.2rem; font-weight: 700; pointer-events: none; opacity: 0;
+            transition: opacity 0.15s; z-index: 5;
+        }
+        .tinder-vote-status.like { right: 16px; color: #4caf50; border: 3px solid #4caf50; transform: rotate(12deg); }
+        .tinder-vote-status.nope { left: 16px; color: #e74c3c; border: 3px solid #e74c3c; transform: rotate(-12deg); }
+
+        .tinder-actions {
+            display: flex; justify-content: center; gap: 24px; padding: 16px;
+            background: #222; border-top: 1px solid #333;
+        }
+        .tinder-actions button {
+            width: 64px; height: 64px; border-radius: 50%; border: 2px solid;
+            font-size: 1.5rem; cursor: pointer; background: transparent;
+            display: flex; align-items: center; justify-content: center;
+            transition: transform 0.15s, background 0.15s;
+        }
+        .tinder-actions button:active { transform: scale(0.9); }
+        .tinder-btn-pass { border-color: #e74c3c; color: #e74c3c; }
+        .tinder-btn-pass:active { background: rgba(231,76,60,0.15); }
+        .tinder-btn-vote { border-color: #4caf50; color: #4caf50; }
+        .tinder-btn-vote:active { background: rgba(76,175,80,0.15); }
+        .tinder-btn-undo { border-color: #c9a84c; color: #c9a84c; font-size: 1.2rem; width: 48px; height: 48px; }
+
+        .tinder-empty { text-align: center; color: #a89f91; font-size: 1.1rem; padding: 40px; }
+        .tinder-empty .emoji { font-size: 3rem; margin-bottom: 16px; }
+
+        /* Mobile launch button */
+        .tinder-launch {
+            display: none; position: fixed; bottom: 20px; left: 50%; transform: translateX(-50%);
+            background: linear-gradient(135deg, #c9a84c, #a8872e); color: #1a1a1a;
+            border: none; padding: 14px 28px; border-radius: 30px; font-size: 1rem;
+            font-weight: 700; cursor: pointer; z-index: 800;
+            box-shadow: 0 4px 20px rgba(201,168,76,0.4);
+        }
+        @media (max-width: 768px) {
+            .tinder-launch { display: block; }
         }
     </style>
 </head>
@@ -1817,64 +1894,10 @@
         });
     }
 
-    // Mobile swipe to vote
-    function initSwipeVoting() {
-        var SWIPE_THRESHOLD = 60;
-        document.querySelectorAll('.card').forEach(function(card) {
-            var hint = document.createElement('div');
-            hint.className = 'swipe-hint';
-            card.appendChild(hint);
-
-            var startX = 0, startY = 0, swiping = false;
-            card.addEventListener('touchstart', function(e) {
-                startX = e.touches[0].clientX;
-                startY = e.touches[0].clientY;
-                swiping = true;
-            }, { passive: true });
-
-            card.addEventListener('touchmove', function(e) {
-                if (!swiping) return;
-                var dx = e.touches[0].clientX - startX;
-                var dy = e.touches[0].clientY - startY;
-                // If scrolling vertically, cancel swipe
-                if (Math.abs(dy) > Math.abs(dx)) { swiping = false; hint.style.opacity = '0'; return; }
-                if (Math.abs(dx) > 30) {
-                    hint.style.opacity = '1';
-                    if (dx > 0) { hint.className = 'swipe-hint vote'; hint.textContent = '\u2764 Vote'; }
-                    else { hint.className = 'swipe-hint unvote'; hint.textContent = '\u2715 Unvote'; }
-                } else {
-                    hint.style.opacity = '0';
-                }
-            }, { passive: true });
-
-            card.addEventListener('touchend', function(e) {
-                hint.style.opacity = '0';
-                if (!swiping) return;
-                swiping = false;
-                var dx = e.changedTouches[0].clientX - startX;
-                if (Math.abs(dx) < SWIPE_THRESHOLD) return;
-
-                var name = getCardName(card);
-                if (!name) return;
-                var charcoal = isCharcoalCard(card);
-                var votes = charcoal ? myVotesCharcoal : myVotes;
-                var btn = card.querySelector('.vote-btn');
-                if (!btn) return;
-
-                if (dx > 0 && !votes[name]) {
-                    toggleVote(name, btn, charcoal);
-                } else if (dx < 0 && votes[name]) {
-                    toggleVote(name, btn, charcoal);
-                }
-            }, { passive: true });
-        });
-    }
-
     // Initialize
     document.addEventListener('DOMContentLoaded', function() {
         initVoteButtons();
         addRemoveButtons();
-        initSwipeVoting();
         document.getElementById('restore-all-btn').addEventListener('click', function() {
             if (confirm('Restore all removed wallpapers?')) {
                 if (useFirebase) { removedRef.set(null); removedCharcoalRef.set(null); }
@@ -1938,10 +1961,281 @@
             applyRemoved(removedC, true);
         }
     });
+
+    // Expose for tinder mode
+    window.toggleVote = toggleVote;
+    window.myVotes = myVotes;
+    window.myVotesCharcoal = myVotesCharcoal;
 })();
 </script>
 
 <button class="restore-all-btn" id="restore-all-btn">Restore All Removed</button>
+
+<button class="tinder-launch" id="tinder-launch">Swipe to Vote</button>
+
+<div id="tinder-overlay">
+    <div class="tinder-top">
+        <button class="tinder-close" id="tinder-close">&times;</button>
+        <div class="tinder-section-tabs">
+            <button data-section="green" class="active">Green</button>
+            <button data-section="charcoal">Charcoal</button>
+        </div>
+        <div class="tinder-progress" id="tinder-progress"></div>
+    </div>
+    <div class="tinder-card-area" id="tinder-card-area"></div>
+    <div class="tinder-actions">
+        <button class="tinder-btn-undo" id="tinder-undo" title="Undo">&#8634;</button>
+        <button class="tinder-btn-pass" id="tinder-pass" title="Pass">&#10005;</button>
+        <button class="tinder-btn-vote" id="tinder-vote" title="Vote">&#10084;</button>
+    </div>
+</div>
+
+<script>
+(function() {
+    var overlay = document.getElementById('tinder-overlay');
+    var cardArea = document.getElementById('tinder-card-area');
+    var progressEl = document.getElementById('tinder-progress');
+    var currentSection = 'green';
+    var cardList = [];
+    var cardIndex = 0;
+    var history = []; // for undo
+    var animating = false;
+
+    function collectCards(section) {
+        var selector = section === 'charcoal'
+            ? '#charcoal-section .card'
+            : '.container > .style-section .card';
+        var cards = [];
+        document.querySelectorAll(selector).forEach(function(card) {
+            if (card.classList.contains('removed')) return;
+            // Skip charcoal cards when collecting green
+            if (section === 'green' && card.closest('#charcoal-section')) return;
+            var img = card.querySelector('.card-img img');
+            if (!img) return;
+            var name = img.getAttribute('src').replace('images/', '').replace('.jpg', '');
+            var isCharcoal = section === 'charcoal';
+            var previewPrefix = isCharcoal ? 'images/room-preview-charcoal-' : 'images/room-preview-';
+
+            // Get all the card data
+            var body = card.querySelector('.card-body');
+            var h3 = body ? body.querySelector('h3') : null;
+            var source = body ? body.querySelector('.source') : null;
+            var price = body ? body.querySelector('.price') : null;
+            var desc = body ? body.querySelector('.desc') : null;
+            var link = body ? body.querySelector('a.btn') : null;
+
+            // Check for room preview
+            var roomPreviewImg = null;
+            var imgs = card.querySelectorAll('.card-img img');
+            imgs.forEach(function(i) { if (i.alt === 'Room preview') roomPreviewImg = i; });
+
+            cards.push({
+                name: name,
+                charcoal: isCharcoal,
+                imgSrc: roomPreviewImg ? roomPreviewImg.src : img.src,
+                patternSrc: img.src,
+                title: h3 ? h3.innerHTML : name,
+                source: source ? source.innerHTML : '',
+                price: price ? price.innerHTML : '',
+                desc: desc ? desc.innerHTML : '',
+                link: link ? link.href : '',
+                domCard: card
+            });
+        });
+        return cards;
+    }
+
+    function isVoted(data) {
+        var votes = data.charcoal ? window.myVotesCharcoal : window.myVotes;
+        return !!votes[data.name];
+    }
+
+    function renderCard(data) {
+        if (!data) {
+            cardArea.innerHTML = '<div class="tinder-empty"><div class="emoji">&#127881;</div>You\'ve seen them all!<br><br><small>Switch sections or close to browse.</small></div>';
+            return;
+        }
+        var voted = isVoted(data);
+        var countId = data.charcoal ? 'c-count-' + data.name : 'count-' + data.name;
+        var countEl = document.getElementById(countId);
+        var count = countEl ? countEl.textContent : '0';
+
+        var html = '<div class="tinder-card" id="tinder-current">' +
+            '<div class="tinder-vote-status like">VOTE</div>' +
+            '<div class="tinder-vote-status nope">NOPE</div>' +
+            '<div class="tinder-card-img"><img src="' + data.imgSrc + '" alt="' + data.title + '"></div>' +
+            '<div class="tinder-card-body">' +
+            '<h3>' + data.title + '</h3>' +
+            '<div class="source">' + data.source + '</div>' +
+            '<span class="price">' + data.price + '</span>' +
+            '<p class="desc">' + data.desc + '</p>' +
+            (data.link ? '<a class="btn" href="' + data.link + '" target="_blank">View Wallpaper</a> ' : '') +
+            '<span style="color: ' + (voted ? '#c9a84c' : '#666') + '; margin-left: 8px; font-size: 0.85rem;">' +
+            (voted ? '&#10084; Voted' : '') + ' (' + count + ' votes)</span>' +
+            '</div></div>';
+        cardArea.innerHTML = html;
+        updateProgress();
+
+        // Set up swipe on this card
+        var card = document.getElementById('tinder-current');
+        if (card) initTinderSwipe(card);
+    }
+
+    function updateProgress() {
+        progressEl.textContent = (cardIndex + 1) + ' / ' + cardList.length;
+    }
+
+    function advance(direction, doVote) {
+        if (animating || cardIndex >= cardList.length) return;
+        animating = true;
+        var card = document.getElementById('tinder-current');
+        var data = cardList[cardIndex];
+
+        // Record history for undo
+        history.push({ index: cardIndex, voted: isVoted(data) });
+
+        // Trigger vote on the real DOM card
+        if (doVote && data) {
+            var votes = data.charcoal ? window.myVotesCharcoal : window.myVotes;
+            if (!votes[data.name]) {
+                var btn = data.domCard.querySelector('.vote-btn');
+                if (btn) window.toggleVote(data.name, btn, data.charcoal);
+            }
+        }
+
+        // Animate out
+        if (card) {
+            card.classList.add(direction === 'right' ? 'swipe-right' : 'swipe-left');
+        }
+
+        setTimeout(function() {
+            cardIndex++;
+            if (cardIndex < cardList.length) {
+                renderCard(cardList[cardIndex]);
+                var newCard = document.getElementById('tinder-current');
+                if (newCard) {
+                    newCard.classList.add('entering');
+                    requestAnimationFrame(function() {
+                        requestAnimationFrame(function() {
+                            newCard.classList.remove('entering');
+                        });
+                    });
+                }
+            } else {
+                renderCard(null);
+            }
+            animating = false;
+        }, 300);
+    }
+
+    function undo() {
+        if (history.length === 0 || animating) return;
+        var prev = history.pop();
+        var data = cardList[prev.index];
+
+        // If we voted during that swipe but they hadn't voted before, unvote
+        if (!prev.voted && isVoted(data)) {
+            var btn = data.domCard.querySelector('.vote-btn');
+            if (btn) window.toggleVote(data.name, btn, data.charcoal);
+        }
+
+        cardIndex = prev.index;
+        renderCard(cardList[cardIndex]);
+    }
+
+    function initTinderSwipe(card) {
+        var startX = 0, startY = 0, dx = 0, tracking = false;
+        var likeLabel = card.querySelector('.tinder-vote-status.like');
+        var nopeLabel = card.querySelector('.tinder-vote-status.nope');
+
+        card.addEventListener('touchstart', function(e) {
+            if (animating) return;
+            startX = e.touches[0].clientX;
+            startY = e.touches[0].clientY;
+            dx = 0;
+            tracking = true;
+            card.style.transition = 'none';
+        }, { passive: true });
+
+        card.addEventListener('touchmove', function(e) {
+            if (!tracking) return;
+            dx = e.touches[0].clientX - startX;
+            var dy = e.touches[0].clientY - startY;
+            if (Math.abs(dy) > Math.abs(dx) && Math.abs(dx) < 20) { tracking = false; return; }
+            if (Math.abs(dx) > 10) e.preventDefault();
+            var rotate = dx * 0.08;
+            card.style.transform = 'translateX(' + dx + 'px) rotate(' + rotate + 'deg)';
+            var opacity = Math.min(1, Math.abs(dx) / 100);
+            if (dx > 0) { likeLabel.style.opacity = opacity; nopeLabel.style.opacity = 0; }
+            else { nopeLabel.style.opacity = opacity; likeLabel.style.opacity = 0; }
+        }, { passive: false });
+
+        card.addEventListener('touchend', function() {
+            if (!tracking) return;
+            tracking = false;
+            card.style.transition = '';
+            likeLabel.style.opacity = 0;
+            nopeLabel.style.opacity = 0;
+
+            if (dx > 80) {
+                advance('right', true);
+            } else if (dx < -80) {
+                advance('left', false);
+            } else {
+                card.style.transform = '';
+            }
+        }, { passive: true });
+    }
+
+    function openTinder(section) {
+        currentSection = section || 'green';
+        cardList = collectCards(currentSection);
+        cardIndex = 0;
+        history = [];
+        overlay.classList.add('active');
+        document.body.classList.add('tinder-active');
+        updateSectionTabs();
+        if (cardList.length > 0) {
+            renderCard(cardList[0]);
+        } else {
+            renderCard(null);
+        }
+    }
+
+    function closeTinder() {
+        overlay.classList.remove('active');
+        document.body.classList.remove('tinder-active');
+    }
+
+    function updateSectionTabs() {
+        document.querySelectorAll('.tinder-section-tabs button').forEach(function(btn) {
+            btn.classList.toggle('active', btn.getAttribute('data-section') === currentSection);
+        });
+    }
+
+    // Event listeners
+    document.getElementById('tinder-launch').addEventListener('click', function() { openTinder('green'); });
+    document.getElementById('tinder-close').addEventListener('click', closeTinder);
+    document.getElementById('tinder-pass').addEventListener('click', function() { advance('left', false); });
+    document.getElementById('tinder-vote').addEventListener('click', function() { advance('right', true); });
+    document.getElementById('tinder-undo').addEventListener('click', undo);
+
+    document.querySelectorAll('.tinder-section-tabs button').forEach(function(btn) {
+        btn.addEventListener('click', function() {
+            openTinder(btn.getAttribute('data-section'));
+        });
+    });
+
+    // Close on Escape
+    document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape' && overlay.classList.contains('active')) closeTinder();
+    });
+
+    // Expose toggleVote reference (it's in the other IIFE)
+    // We need access - let's make it global
+    window._tinderOpenFor = openTinder;
+})();
+</script>
 
 </body>
 </html>
