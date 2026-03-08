@@ -1611,7 +1611,7 @@
             btn.className = 'vote-btn' + (votes[name] ? ' voted' : '');
             btn.setAttribute('data-wp', name);
             btn.setAttribute('data-charcoal', charcoal ? '1' : '');
-            btn.innerHTML = '<span class="heart">' + (votes[name] ? '&#10084;' : '&#9825;') + '</span> <span class="vote-count" id="' + countId + '">0</span>';
+            btn.innerHTML = '<span class="heart">' + (votes[name] ? '&#10084;' : '&#9825;') + '</span> ' + (votes[name] ? 'Voted' : 'Vote') + ' <span class="vote-count" id="' + countId + '">0</span>';
 
             btn.addEventListener('click', function(e) {
                 e.stopPropagation();
@@ -1626,15 +1626,17 @@
     function toggleVote(name, btn, charcoal) {
         var votes = charcoal ? myVotesCharcoal : myVotes;
         var storageKey = charcoal ? 'wallpaper-votes-charcoal' : 'wallpaper-votes';
+        var countEl = btn.querySelector('.vote-count');
+        var countHtml = countEl ? countEl.outerHTML : '';
         if (votes[name]) {
             delete votes[name];
             btn.classList.remove('voted');
-            btn.querySelector('.heart').innerHTML = '&#9825;';
+            btn.innerHTML = '<span class="heart">&#9825;</span> Vote ' + countHtml;
             updateVoteCount(name, -1, charcoal);
         } else {
             votes[name] = true;
             btn.classList.add('voted');
-            btn.querySelector('.heart').innerHTML = '&#10084;';
+            btn.innerHTML = '<span class="heart">&#10084;</span> Voted ' + countHtml;
             updateVoteCount(name, 1, charcoal);
         }
         localStorage.setItem(storageKey, JSON.stringify(votes));
